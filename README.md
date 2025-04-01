@@ -103,6 +103,7 @@ interface AICore {
 
 ## Project Structure
 
+```
 eremois/
 ├── apps/                      # Applications
 │   ├── desktop/              # Desktop (Tauri)
@@ -114,7 +115,6 @@ eremois/
 │   ├── storage/            # Local storage
 │   └── ui/                 # Shared components
 └── docs/                    # Documentation
-
 ```
 
 ## Getting Started
