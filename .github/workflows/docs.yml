@@ -1,0 +1,118 @@
+name: Documentation
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'docs/**'
+      - '.github/workflows/docs.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'docs/**'
+      - '.github/workflows/docs.yml'
+
+jobs:
+  build:
+    name: Build Documentation
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: |
+        npm ci
+        npm run setup:docs
+
+    - name: Build documentation
+      run: npm run docs:build
+
+    - name: Upload documentation artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: documentation
+        path: docs/.vitepress/dist
+        retention-days: 7
+
+  deploy:
+    name: Deploy Documentation
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    environment:
+      name: docs
+      url: https://docs.eremois.dev
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Download documentation artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: documentation
+        path: docs/.vitepress/dist
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-west-2
+
+    - name: Deploy to S3
+      run: |
+        aws s3 sync docs/.vitepress/dist s3://docs.eremois.dev --delete
+
+    - name: Invalidate CloudFront cache
+      run: |
+        aws cloudfront create-invalidation \
+          --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
+          --paths "/*"
+
+    - name: Notify deployment
+      uses: slackapi/slack-github-action@v1.23.0
+      with:
+        channel-id: 'deployments'
+        slack-message: 'Documentation deployment completed :books:'
+      env:
+        SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+
+  preview:
+    name: Preview Documentation
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Download documentation artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: documentation
+        path: docs/.vitepress/dist
+
+    - name: Deploy to Netlify
+      uses: nwtgck/actions-netlify@v2.0
+      with:
+        publish-dir: docs/.vitepress/dist
+        production-branch: main
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        deploy-message: "Deploy Preview from ${{ github.event.pull_request.title }}"
+        enable-pull-request-comment: true
+        enable-commit-comment: false
+        overwrites-pull-request-comment: true
+      env:
+        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      timeout-minutes: 5 

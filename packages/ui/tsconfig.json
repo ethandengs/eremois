@@ -1,0 +1,16 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "composite": true,
+    "types": ["node", "jest", "react", "react-dom"]
+  },
+  "include": ["src/**/*"],
+  "references": [
+    { "path": "../core" }
+  ]
+} 

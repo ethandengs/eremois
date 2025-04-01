@@ -1,0 +1,10 @@
+
+> @eremois/core@0.1.0 build
+> tsup
+
+[31mNo input files, try "tsup <your-file>" instead[39m
+[37;40mnpm[0m [0m[31;40mERR![0m [0m[35mLifecycle script `build` failed with error:[0m 
+[0m[37;40mnpm[0m [0m[31;40mERR![0m [0m[35mError: command failed[0m 
+[0m[37;40mnpm[0m [0m[31;40mERR![0m [0m[35m  in workspace: @eremois/core@0.1.0[0m 
+[0m[37;40mnpm[0m [0m[31;40mERR![0m [0m[35m  at location: /Users/ethandeng/HumanByte/Projects/eremois/packages/core[0m 
+[0m
