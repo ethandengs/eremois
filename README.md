@@ -114,6 +114,7 @@ eremois/
 │   ├── storage/            # Local storage
 │   └── ui/                 # Shared components
 └── docs/                    # Documentation
+
 ```
 
 ## Getting Started
