@@ -55,9 +55,9 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   test:
@@ -120,11 +120,13 @@ interface ProductionConfig {
 We use a combination of tools for comprehensive monitoring:
 
 1. **Application Monitoring**
+
    - AWS CloudWatch for metrics and logs
    - Datadog for APM
    - Sentry for error tracking
 
 2. **Infrastructure Monitoring**
+
    - ECS task metrics
    - MongoDB Atlas monitoring
    - Redis metrics
@@ -139,6 +141,7 @@ We use a combination of tools for comprehensive monitoring:
 ### Backup Strategy
 
 1. **Database Backups**
+
    - Daily automated backups
    - Point-in-time recovery enabled
    - Cross-region replication
@@ -151,6 +154,7 @@ We use a combination of tools for comprehensive monitoring:
 ### Recovery Procedures
 
 1. **Service Restoration**
+
    - Automated failover mechanisms
    - Manual intervention protocols
    - Data consistency verification
@@ -165,6 +169,7 @@ We use a combination of tools for comprehensive monitoring:
 ### Infrastructure Security
 
 1. **Network Security**
+
    - VPC configuration with private subnets
    - Security groups and NACLs
    - WAF rules for API protection
@@ -177,6 +182,7 @@ We use a combination of tools for comprehensive monitoring:
 ### Compliance
 
 1. **Data Protection**
+
    - Encryption at rest (AWS KMS)
    - TLS for all communications
    - Regular security audits
@@ -191,6 +197,7 @@ We use a combination of tools for comprehensive monitoring:
 ### Horizontal Scaling
 
 1. **Frontend**
+
    - Auto-scaling based on traffic
    - CDN caching
    - Static asset optimization
@@ -203,6 +210,7 @@ We use a combination of tools for comprehensive monitoring:
 ### Vertical Scaling
 
 1. **Database**
+
    - MongoDB Atlas tier upgrades
    - Index optimization
    - Query performance tuning
@@ -215,11 +223,13 @@ We use a combination of tools for comprehensive monitoring:
 ## Deployment Checklist
 
 1. **Pre-deployment**
+
    - Run full test suite
    - Check dependencies
    - Verify infrastructure state
 
 2. **Deployment**
+
    - Database migrations
    - Service updates
    - Cache warming
@@ -227,4 +237,4 @@ We use a combination of tools for comprehensive monitoring:
 3. **Post-deployment**
    - Health checks
    - Metric verification
-   - User impact monitoring 
+   - User impact monitoring

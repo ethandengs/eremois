@@ -1,8 +1,8 @@
-import { Request, Response, NextFunction } from 'express';
-import jwt from 'jsonwebtoken';
-import { logger } from '../utils/logger';
+import { Request, Response, NextFunction } from "express";
+import jwt from "jsonwebtoken";
+import { logger } from "../utils/logger";
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
+const JWT_SECRET = process.env.JWT_SECRET || "your-secret-key";
 
 interface JwtPayload {
   userId: string;
@@ -24,17 +24,17 @@ export const authenticate = async (
   next: NextFunction
 ) => {
   try {
-    const token = req.header('Authorization')?.replace('Bearer ', '');
+    const token = req.header("Authorization")?.replace("Bearer ", "");
 
     if (!token) {
-      return res.status(401).json({ message: 'Authentication required' });
+      return res.status(401).json({ message: "Authentication required" });
     }
 
     const decoded = jwt.verify(token, JWT_SECRET) as JwtPayload;
     req.user = { id: decoded.userId };
     next();
   } catch (error) {
-    logger.error('Authentication error:', error);
-    res.status(401).json({ message: 'Invalid token' });
+    logger.error("Authentication error:", error);
+    res.status(401).json({ message: "Invalid token" });
   }
-}; 
+};

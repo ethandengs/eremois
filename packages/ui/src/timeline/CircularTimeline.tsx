@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from 'react';
-import { motion, SVGMotionProps } from 'framer-motion';
-import type { TimeBlock } from '@eremois/core';
+import React, { useEffect, useRef } from "react";
+import { motion, SVGMotionProps } from "framer-motion";
+import type { TimeBlock } from "@eremois/core";
 
 interface CircularTimelineProps {
   blocks: TimeBlock[];
@@ -32,34 +32,35 @@ export const CircularTimeline: React.FC<CircularTimelineProps> = ({
   }, [blocks, currentTime, size]);
 
   const getBlockArc = (block: TimeBlock): string => {
-    const startHours = block.startTime.getHours() + block.startTime.getMinutes() / 60;
+    const startHours =
+      block.startTime.getHours() + block.startTime.getMinutes() / 60;
     const endHours = block.endTime.getHours() + block.endTime.getMinutes() / 60;
-    
+
     const startAngle = (startHours / 24) * 2 * Math.PI - Math.PI / 2;
     const endAngle = (endHours / 24) * 2 * Math.PI - Math.PI / 2;
-    
+
     const x1 = center + radius * Math.cos(startAngle);
     const y1 = center + radius * Math.sin(startAngle);
     const x2 = center + radius * Math.cos(endAngle);
     const y2 = center + radius * Math.sin(endAngle);
-    
+
     const largeArcFlag = endHours - startHours > 12 ? 1 : 0;
-    
+
     return `M ${x1} ${y1} A ${radius} ${radius} 0 ${largeArcFlag} 1 ${x2} ${y2}`;
   };
 
   const getBlockColor = (block: TimeBlock): string => {
     switch (block.type) {
-      case 'FOCUS':
-        return '#4CAF50';
-      case 'BREAK':
-        return '#2196F3';
-      case 'MEETING':
-        return '#F44336';
-      case 'TASK':
-        return '#FF9800';
+      case "FOCUS":
+        return "#4CAF50";
+      case "BREAK":
+        return "#2196F3";
+      case "MEETING":
+        return "#F44336";
+      case "TASK":
+        return "#FF9800";
       default:
-        return '#9E9E9E';
+        return "#9E9E9E";
     }
   };
 
@@ -68,7 +69,7 @@ export const CircularTimeline: React.FC<CircularTimelineProps> = ({
     const angle = (hours / 24) * 2 * Math.PI - Math.PI / 2;
     const x = center + radius * Math.cos(angle);
     const y = center + radius * Math.sin(angle);
-    
+
     return { x, y };
   };
 
@@ -143,4 +144,4 @@ export const CircularTimeline: React.FC<CircularTimelineProps> = ({
       />
     </svg>
   );
-}; 
+};

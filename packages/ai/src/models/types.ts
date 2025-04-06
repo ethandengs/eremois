@@ -1,10 +1,10 @@
-import { z } from 'zod';
+import { z } from "zod";
 
 export const TimeBlockSchema = z.object({
   id: z.string(),
   start: z.date(),
   end: z.date(),
-  type: z.enum(['FOCUS', 'BREAK', 'MEETING', 'TASK']),
+  type: z.enum(["FOCUS", "BREAK", "MEETING", "TASK"]),
   energy: z.number().min(0).max(1),
   productivity: z.number().min(0).max(1),
 });
@@ -27,4 +27,4 @@ export const PredictionInputSchema = z.object({
 
 export type TimeBlock = z.infer<typeof TimeBlockSchema>;
 export type UserPattern = z.infer<typeof UserPatternSchema>;
-export type PredictionInput = z.infer<typeof PredictionInputSchema>; 
+export type PredictionInput = z.infer<typeof PredictionInputSchema>;

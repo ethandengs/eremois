@@ -1,7 +1,7 @@
-import React, { useMemo } from 'react';
-import { View, Text, StyleSheet, ViewStyle } from 'react-native';
-import Svg, { Path, Circle } from 'react-native-svg';
-import { colors, typography } from '../theme';
+import React, { useMemo } from "react";
+import { View, Text, StyleSheet, ViewStyle } from "react-native";
+import Svg, { Path, Circle } from "react-native-svg";
+import { colors, typography } from "../theme";
 
 interface TimeBlock {
   id: string;
@@ -42,7 +42,8 @@ export const CircularTimeline: React.FC<CircularTimelineProps> = ({
 }: CircularTimelineProps) => {
   const timeBlockPaths = useMemo(() => {
     return timeBlocks.map((block: TimeBlock): TimeBlockPath => {
-      const startAngle = ((block.startHour % 12) / 12) * 2 * Math.PI - Math.PI / 2;
+      const startAngle =
+        ((block.startHour % 12) / 12) * 2 * Math.PI - Math.PI / 2;
       const endAngle = ((block.endHour % 12) / 12) * 2 * Math.PI - Math.PI / 2;
 
       const startX = CENTER + RADIUS * Math.cos(startAngle);
@@ -61,7 +62,9 @@ export const CircularTimeline: React.FC<CircularTimelineProps> = ({
   }, [timeBlocks]);
 
   const currentTimePosition = useMemo(() => {
-    const angle = ((currentHour % 12 + currentMinute / 60) / 12) * 2 * Math.PI - Math.PI / 2;
+    const angle =
+      (((currentHour % 12) + currentMinute / 60) / 12) * 2 * Math.PI -
+      Math.PI / 2;
     return {
       x: CENTER + RADIUS * Math.cos(angle),
       y: CENTER + RADIUS * Math.sin(angle),
@@ -109,9 +112,7 @@ export const CircularTimeline: React.FC<CircularTimelineProps> = ({
             <Text style={styles.remainingLabel}>remain</Text>
           </>
         )}
-        {currentTask && (
-          <Text style={styles.currentTask}>{currentTask}</Text>
-        )}
+        {currentTask && <Text style={styles.currentTask}>{currentTask}</Text>}
         {nextTask && (
           <>
             <Text style={styles.nextLabel}>next</Text>
@@ -131,14 +132,11 @@ export const CircularTimeline: React.FC<CircularTimelineProps> = ({
             style={[
               styles.hourMarker,
               {
-                transform: [
-                  { translateX: x - 1 },
-                  { translateY: y - 8 },
-                ],
+                transform: [{ translateX: x - 1 }, { translateY: y - 8 }],
               },
             ]}
           >
-            <Text style={styles.hourText}>{i === 0 ? '12' : i}</Text>
+            <Text style={styles.hourText}>{i === 0 ? "12" : i}</Text>
           </View>
         );
       })}
@@ -150,12 +148,12 @@ const styles = StyleSheet.create({
   container: {
     width: CENTER * 2,
     height: CENTER * 2,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   centerContent: {
-    position: 'absolute',
-    alignItems: 'center',
+    position: "absolute",
+    alignItems: "center",
   },
   remainingTime: {
     ...typography.h1,
@@ -181,12 +179,12 @@ const styles = StyleSheet.create({
     color: colors.text,
   },
   hourMarker: {
-    position: 'absolute',
+    position: "absolute",
     width: 2,
-    alignItems: 'center',
+    alignItems: "center",
   },
   hourText: {
     ...typography.caption,
     color: colors.textSecondary,
   },
-}); 
+});

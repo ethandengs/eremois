@@ -7,7 +7,7 @@ eremois/
 │   │   ├── src-tauri/       # Rust-based backend
 │   │   └── src/             # Frontend UI
 │   ├── mobile/              # Mobile app (React Native)
-│   │   ├── ios/            
+│   │   ├── ios/
 │   │   ├── android/
 │   │   └── src/
 │   └── web/                 # Progressive Web App (optional)
@@ -52,30 +52,35 @@ eremois/
 ## Key Architectural Decisions
 
 ### 1. Privacy-First Architecture
+
 - All sensitive data stored locally
 - End-to-end encryption for optional sync
 - No cloud dependencies
 - Local-first operations
 
 ### 2. Edge AI Implementation
+
 - TensorFlow.js/ONNX Runtime for edge
 - Local model training & adaptation
 - Efficient resource usage
 - Privacy-preserving learning
 
 ### 3. Modular Core
+
 - Shared business logic
 - Platform-specific adaptations
 - Plugin architecture
 - Clear separation of concerns
 
 ### 4. Cross-Platform Strategy
+
 - Tauri for desktop (performance)
 - React Native for mobile
 - Shared core logic
 - Native optimizations where needed
 
 ### 5. Data Flow
+
 ```mermaid
 graph TD
     UI[User Interface] --> Core[Core Logic]
@@ -89,6 +94,7 @@ graph TD
 ## Package Dependencies
 
 ### Core Dependencies
+
 - TensorFlow.js (AI)
 - SQLite (Storage)
 - Tauri (Desktop)
@@ -96,6 +102,7 @@ graph TD
 - TypeScript (Development)
 
 ### Development Dependencies
+
 - ESLint
 - Jest
 - TypeScript
@@ -110,6 +117,7 @@ graph TD
    npm install
    ```
 3. Choose your target platform:
+
    ```bash
    # Desktop
    cd apps/desktop
@@ -126,4 +134,4 @@ graph TD
 2. **Edge Computing**: AI/ML must run locally
 3. **Resource Efficiency**: Optimize for mobile devices
 4. **Type Safety**: Use TypeScript strictly
-5. **Testing**: Maintain high test coverage 
+5. **Testing**: Maintain high test coverage

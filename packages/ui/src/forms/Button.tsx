@@ -1,22 +1,22 @@
-import React from 'react';
+import React from "react";
 import {
   TouchableOpacity,
   TouchableOpacityProps,
   Text,
   StyleSheet,
   ActivityIndicator,
-} from 'react-native';
-import { colors, spacing, typography, borderRadius } from '../theme';
+} from "react-native";
+import { colors, spacing, typography, borderRadius } from "../theme";
 
 interface ButtonProps extends TouchableOpacityProps {
   title: string;
-  variant?: 'primary' | 'secondary' | 'outline';
+  variant?: "primary" | "secondary" | "outline";
   loading?: boolean;
 }
 
 export const Button: React.FC<ButtonProps> = ({
   title,
-  variant = 'primary',
+  variant = "primary",
   loading = false,
   style,
   disabled,
@@ -24,9 +24,9 @@ export const Button: React.FC<ButtonProps> = ({
 }) => {
   const getVariantStyle = () => {
     switch (variant) {
-      case 'secondary':
+      case "secondary":
         return styles.secondaryButton;
-      case 'outline':
+      case "outline":
         return styles.outlineButton;
       default:
         return styles.primaryButton;
@@ -35,7 +35,7 @@ export const Button: React.FC<ButtonProps> = ({
 
   const getTextStyle = () => {
     switch (variant) {
-      case 'outline':
+      case "outline":
         return styles.outlineText;
       default:
         return styles.buttonText;
@@ -54,7 +54,9 @@ export const Button: React.FC<ButtonProps> = ({
       {...props}
     >
       {loading ? (
-        <ActivityIndicator color={variant === 'outline' ? colors.accent : colors.text} />
+        <ActivityIndicator
+          color={variant === "outline" ? colors.accent : colors.text}
+        />
       ) : (
         <Text style={getTextStyle()}>{title}</Text>
       )}
@@ -66,8 +68,8 @@ const styles = StyleSheet.create({
   button: {
     height: 48,
     borderRadius: borderRadius.md,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     paddingHorizontal: spacing.xl,
   },
   primaryButton: {
@@ -77,7 +79,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.surface,
   },
   outlineButton: {
-    backgroundColor: 'transparent',
+    backgroundColor: "transparent",
     borderWidth: 1,
     borderColor: colors.border,
   },
@@ -87,11 +89,11 @@ const styles = StyleSheet.create({
   buttonText: {
     color: colors.text,
     ...typography.body,
-    fontWeight: '600',
+    fontWeight: "600",
   },
   outlineText: {
     color: colors.text,
     ...typography.body,
-    fontWeight: '600',
+    fontWeight: "600",
   },
-}); 
+});

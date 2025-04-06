@@ -1,7 +1,7 @@
-import winston from 'winston';
+import winston from "winston";
 
 export const logger = winston.createLogger({
-  level: 'info',
+  level: "info",
   format: winston.format.combine(
     winston.format.timestamp(),
     winston.format.json()
@@ -11,4 +11,4 @@ export const logger = winston.createLogger({
       format: winston.format.simple(),
     }),
   ],
-}); 
+});

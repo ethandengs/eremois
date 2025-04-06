@@ -25,7 +25,11 @@ interface TimelineProps {
   onEventClick: (event: TimelineEvent) => void;
 }
 
-const Timeline: React.FC<TimelineProps> = ({ events, currentTime, onEventClick }) => {
+const Timeline: React.FC<TimelineProps> = ({
+  events,
+  currentTime,
+  onEventClick,
+}) => {
   // Implementation details...
 };
 ```
@@ -51,7 +55,7 @@ interface AIAssistantProps {
 ### Task Management
 
 ```typescript
-type TaskType = 'event' | 'task' | 'project';
+type TaskType = "event" | "task" | "project";
 
 interface Task {
   id: string;
@@ -82,10 +86,12 @@ src/
 ## Performance Optimizations
 
 1. **Virtualization**
+
    - Virtual scrolling for long lists
    - Lazy loading of distant time periods
 
 2. **Caching**
+
    - React Query for API data
    - Memoization of expensive calculations
 
@@ -98,7 +104,7 @@ src/
 ```typescript
 interface TimelineState {
   events: TimelineEvent[];
-  view: 'hour' | 'day' | 'week' | 'month' | 'year';
+  view: "hour" | "day" | "week" | "month" | "year";
   selectedDate: Date;
 }
 
@@ -111,7 +117,7 @@ interface TaskState {
 interface AIState {
   preferences: UserPreferences;
   suggestions: AISuggestion[];
-  learningMode: 'active' | 'passive';
+  learningMode: "active" | "passive";
 }
 ```
 
@@ -125,15 +131,17 @@ interface AIState {
 ## Testing Strategy
 
 1. **Unit Tests**
+
    - Component testing with React Testing Library
    - Hook testing
    - Utility function testing
 
 2. **Integration Tests**
+
    - User flow testing
    - API integration testing
    - State management testing
 
 3. **E2E Tests**
    - Critical path testing with Cypress
-   - Cross-browser testing 
+   - Cross-browser testing

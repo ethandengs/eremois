@@ -1,13 +1,13 @@
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import './globals.css';
-import { AuthProvider } from './contexts/AuthContext';
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import { AuthProvider } from "./contexts/AuthContext";
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'erēmois - AI Time Management',
-  description: 'AI self-adaptive time managing APP',
+  title: "erēmois - AI Time Management",
+  description: "AI self-adaptive time managing APP",
 };
 
 export default function RootLayout({
@@ -22,4 +22,4 @@ export default function RootLayout({
       </body>
     </html>
   );
-} 
+}

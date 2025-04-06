@@ -1,7 +1,7 @@
-import * as fs from 'fs-extra';
-import * as path from 'node:path';
+import * as fs from "fs-extra";
+import * as path from "node:path";
 
-const DOCS_DIR = path.resolve(__dirname, '../../docs');
+const DOCS_DIR = path.resolve(__dirname, "../../docs");
 
 const CONFIG_FILE = `
 import { defineConfig } from 'vitepress'
@@ -83,12 +83,7 @@ features:
 async function setupDocs() {
   try {
     // Create docs directory structure
-    const docsDirs = [
-      'guide',
-      'api',
-      'architecture',
-      '.vitepress'
-    ];
+    const docsDirs = ["guide", "api", "architecture", ".vitepress"];
 
     for (const dir of docsDirs) {
       await fs.ensureDir(path.join(DOCS_DIR, dir));
@@ -96,29 +91,26 @@ async function setupDocs() {
 
     // Create VitePress config
     await fs.writeFile(
-      path.join(DOCS_DIR, '.vitepress/config.ts'),
+      path.join(DOCS_DIR, ".vitepress/config.ts"),
       CONFIG_FILE
     );
 
     // Create index page
-    await fs.writeFile(
-      path.join(DOCS_DIR, 'index.md'),
-      INDEX_MD
-    );
+    await fs.writeFile(path.join(DOCS_DIR, "index.md"), INDEX_MD);
 
     // Create initial documentation files
     await createInitialDocs();
 
-    console.log('Documentation system set up successfully!');
+    console.log("Documentation system set up successfully!");
   } catch (error) {
-    console.error('Error setting up documentation:', error);
+    console.error("Error setting up documentation:", error);
     process.exit(1);
   }
 }
 
 async function createInitialDocs() {
   const docs = {
-    'guide/quick-start.md': `
+    "guide/quick-start.md": `
 # Quick Start
 
 ## Prerequisites
@@ -139,7 +131,7 @@ npm install
 npm run dev
 \`\`\`
     `,
-    'architecture/overview.md': `
+    "architecture/overview.md": `
 # Architecture Overview
 
 erēmois is built with a modern, scalable architecture:
@@ -148,7 +140,7 @@ erēmois is built with a modern, scalable architecture:
 - Backend: Node.js with Express
 - AI: TensorFlow.js for intelligent scheduling
 - Database: MongoDB for flexible data storage
-    `
+    `,
   };
 
   for (const [file, content] of Object.entries(docs)) {
@@ -156,4 +148,4 @@ erēmois is built with a modern, scalable architecture:
   }
 }
 
-setupDocs(); 
+setupDocs();

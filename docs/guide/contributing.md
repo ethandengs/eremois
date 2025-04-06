@@ -17,6 +17,7 @@ We are committed to providing a welcoming and inclusive environment. All contrib
 ### 2. Development Process
 
 1. **Fork and Clone**
+
    ```bash
    # Fork the repository on GitHub
    git clone https://github.com/your-username/eremois.git
@@ -25,6 +26,7 @@ We are committed to providing a welcoming and inclusive environment. All contrib
    ```
 
 2. **Create a Branch**
+
    ```bash
    # For features
    git checkout -b feature/your-feature-name
@@ -37,12 +39,14 @@ We are committed to providing a welcoming and inclusive environment. All contrib
    ```
 
 3. **Make Changes**
+
    - Follow our coding standards
    - Write meaningful commit messages
    - Add tests for new features
    - Update documentation as needed
 
 4. **Test Your Changes**
+
    ```bash
    # Run all tests
    npm test
@@ -100,7 +104,7 @@ const analyzeUserPatterns = async (
 const TaskList: React.FC<TaskListProps> = ({ tasks, onTaskSelect }) => {
   // Use hooks at the top
   const [sortedTasks, setSortedTasks] = useState<Task[]>([]);
-  
+
   // Use meaningful effect dependencies
   useEffect(() => {
     setSortedTasks(sortTasks(tasks));
@@ -108,12 +112,8 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, onTaskSelect }) => {
 
   return (
     <div>
-      {sortedTasks.map(task => (
-        <TaskItem
-          key={task.id}
-          task={task}
-          onSelect={onTaskSelect}
-        />
+      {sortedTasks.map((task) => (
+        <TaskItem key={task.id} task={task} onSelect={onTaskSelect} />
       ))}
     </div>
   );
@@ -125,24 +125,24 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, onTaskSelect }) => {
 #### Unit Tests
 
 ```typescript
-describe('TaskManager', () => {
-  it('should create a new task', () => {
+describe("TaskManager", () => {
+  it("should create a new task", () => {
     const task = createTask({
-      title: 'Test Task',
-      priority: 1
+      title: "Test Task",
+      priority: 1,
     });
-    
-    expect(task).toHaveProperty('id');
-    expect(task.title).toBe('Test Task');
+
+    expect(task).toHaveProperty("id");
+    expect(task.title).toBe("Test Task");
   });
 
-  it('should handle task prioritization', () => {
+  it("should handle task prioritization", () => {
     const tasks = [
       createTask({ priority: 2 }),
       createTask({ priority: 1 }),
-      createTask({ priority: 3 })
+      createTask({ priority: 3 }),
     ];
-    
+
     const sorted = sortTasks(tasks);
     expect(sorted[0].priority).toBe(1);
   });
@@ -152,15 +152,15 @@ describe('TaskManager', () => {
 #### Integration Tests
 
 ```typescript
-describe('TaskList Integration', () => {
-  it('should load and display tasks', async () => {
+describe("TaskList Integration", () => {
+  it("should load and display tasks", async () => {
     const { getByText, findByRole } = render(<TaskList />);
-    
+
     // Wait for tasks to load
-    await findByRole('list');
-    
+    await findByRole("list");
+
     // Verify task display
-    expect(getByText('Task 1')).toBeInTheDocument();
+    expect(getByText("Task 1")).toBeInTheDocument();
   });
 });
 ```
@@ -179,7 +179,7 @@ describe('TaskList Integration', () => {
 interface TimeSlot {
   start: Date;
   end: Date;
-  status: 'free' | 'busy' | 'tentative';
+  status: "free" | "busy" | "tentative";
 }
 ```
 
@@ -193,29 +193,36 @@ interface TimeSlot {
 ### 6. Pull Request Process
 
 1. **Before Submitting**
+
    - Rebase on latest main
    - Run all tests
    - Update documentation
    - Check for lint errors
 
 2. **PR Description**
+
    ```markdown
    ## Description
+
    Brief description of changes
 
    ## Type of Change
+
    - [ ] Bug fix
    - [ ] New feature
    - [ ] Breaking change
    - [ ] Documentation update
 
    ## Testing
+
    Describe testing done
 
    ## Screenshots
+
    If applicable
 
    ## Checklist
+
    - [ ] Tests added
    - [ ] Documentation updated
    - [ ] Lint checks pass
@@ -230,6 +237,7 @@ interface TimeSlot {
 ### 7. Release Process
 
 1. **Version Bumping**
+
    ```bash
    npm version patch # For bug fixes
    npm version minor # For new features
@@ -237,13 +245,17 @@ interface TimeSlot {
    ```
 
 2. **Changelog Updates**
+
    ```markdown
    ## [1.1.0] - 2024-03-21
+
    ### Added
+
    - New timeline visualization
    - Task prioritization algorithm
 
    ### Fixed
+
    - Database connection stability
    - UI responsiveness issues
    ```
@@ -262,8 +274,9 @@ interface TimeSlot {
 ## Recognition
 
 We value all contributions, and contributors will be recognized in:
+
 - Release notes
 - Contributors list
 - Community spotlights
 
-Thank you for contributing to erēmois! Together, we're building a better way to manage time and focus. 
+Thank you for contributing to erēmois! Together, we're building a better way to manage time and focus.

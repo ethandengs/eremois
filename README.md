@@ -11,6 +11,7 @@ In a world where digital tools often demand trading privacy for convenience, erÄ
 ## Core Principles
 
 ### Privacy as Foundation
+
 - Data remains on user devices
 - AI learns locally, adapts privately
 - End-to-end encrypted sync (optional)
@@ -18,6 +19,7 @@ In a world where digital tools often demand trading privacy for convenience, erÄ
 - Transparent data handling
 
 ### Thoughtful Intelligence
+
 - Pattern recognition that respects privacy
 - Adaptive scheduling based on natural rhythms
 - Energy-aware task management
@@ -25,9 +27,11 @@ In a world where digital tools often demand trading privacy for convenience, erÄ
 - Customizable learning parameters
 
 ### Community-Driven Infrastructure
+
 Choose the approach that fits your needs:
 
 **Personal Installation**
+
 - Runs entirely on your devices
 - Zero data sharing
 - Minimal resource requirements
@@ -35,6 +39,7 @@ Choose the approach that fits your needs:
 - P2P sync between devices
 
 **Self-Hosted Server**
+
 - Control your own infrastructure
 - Multi-device synchronization
 - Family or small team sharing
@@ -42,6 +47,7 @@ Choose the approach that fits your needs:
 - Local backup systems
 
 **Enterprise Deployment**
+
 - Advanced security features
 - Custom authentication
 - Infrastructure integration
@@ -51,6 +57,7 @@ Choose the approach that fits your needs:
 ## Technical Implementation
 
 ### Edge AI Architecture
+
 ```typescript
 interface AICore {
   // Local learning pipeline
@@ -65,6 +72,7 @@ interface AICore {
 ### Core Features
 
 #### Living Timeline
+
 - Circular visualization reflecting natural rhythms
 - Smart time blocks that learn patterns
 - Real-time energy adaptation
@@ -72,6 +80,7 @@ interface AICore {
 - Customizable visualizations
 
 #### Task Management
+
 - Events (E): Time-specific activities with flexible rules
 - Tasks (T): Adaptive to-do items with custom priority
 - Projects (P): Long-term goals with pattern recognition
@@ -79,6 +88,7 @@ interface AICore {
 - Personal categorization systems
 
 #### Edge Intelligence
+
 - TensorFlow.js for local processing
 - Efficient resource usage
 - Privacy-preserving learning
@@ -88,6 +98,7 @@ interface AICore {
 ## Technical Stack
 
 ### Core Technologies
+
 - TensorFlow.js / ONNX Runtime (Edge AI)
 - SQLite (Local Storage)
 - Tauri (Desktop)
@@ -95,6 +106,7 @@ interface AICore {
 - TypeScript (Development)
 
 ### Development Tools
+
 - ESLint
 - Jest
 - TypeScript
@@ -120,6 +132,7 @@ eremois/
 ## Getting Started
 
 ### Personal Use
+
 ```bash
 # Desktop Installation
 npm install -g @eremois/desktop
@@ -129,6 +142,7 @@ npm install -g @eremois/mobile
 ```
 
 ### Self-Hosted Setup
+
 ```bash
 docker run -d \
   --name eremois \
@@ -142,11 +156,13 @@ For detailed setup instructions, visit our [Getting Started Guide](docs/guide/ge
 ## Development
 
 ### Prerequisites
+
 - Node.js (v18 or later)
 - npm (v9 or later)
 - Git
 
 ### Setup
+
 ```bash
 git clone https://github.com/ethandeng/eremois.git
 cd eremois
@@ -154,6 +170,7 @@ npm install
 ```
 
 ### Development Commands
+
 ```bash
 npm run dev      # Start development
 npm run test     # Run tests

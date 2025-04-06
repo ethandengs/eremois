@@ -1,4 +1,4 @@
-export type BlockType = 'FOCUS' | 'BREAK' | 'MEETING' | 'TASK';
+export type BlockType = "FOCUS" | "BREAK" | "MEETING" | "TASK";
 
 export interface TimeBlock {
   id: string;
@@ -44,4 +44,4 @@ export interface Plugin {
   onBlockUpdate?: (block: TimeBlock) => Promise<void>;
   onBlockDelete?: (blockId: string) => Promise<void>;
   onTimelineUpdate?: (blocks: TimeBlock[]) => Promise<void>;
-} 
+}

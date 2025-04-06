@@ -152,11 +152,13 @@ npm run format
 We follow a strict code style guide:
 
 1. **TypeScript**
+
    - Use strict type checking
    - Avoid `any` types
    - Document complex types
 
 2. **React**
+
    - Use functional components
    - Implement proper error boundaries
    - Follow React hooks best practices
@@ -169,6 +171,7 @@ We follow a strict code style guide:
 ### Git Workflow
 
 1. **Commits**
+
    - Use conventional commits
    - Keep commits focused
    - Write meaningful messages
@@ -181,6 +184,7 @@ We follow a strict code style guide:
 ### Documentation
 
 1. **Code Documentation**
+
    - Document complex functions
    - Add JSDoc comments
    - Keep README files updated
@@ -195,6 +199,7 @@ We follow a strict code style guide:
 ### Frontend Debugging
 
 1. **Browser DevTools**
+
    - React Developer Tools
    - Redux DevTools (if used)
    - Network tab for API calls
@@ -207,6 +212,7 @@ We follow a strict code style guide:
 ### Backend Debugging
 
 1. **API Testing**
+
    - Use Postman/Insomnia
    - Check logs in terminal
    - Monitor MongoDB queries
@@ -219,31 +225,34 @@ We follow a strict code style guide:
 ## Common Issues
 
 1. **Port Conflicts**
+
    ```bash
    # Check ports in use
    lsof -i :3000
    lsof -i :4000
-   
+
    # Kill process using port
    kill -9 <PID>
    ```
 
 2. **Database Connection**
+
    ```bash
    # Check MongoDB status
    mongosh
-   
+
    # Verify connection string
    echo $MONGODB_URI
    ```
 
 3. **Node Modules**
+
    ```bash
    # Clear node_modules
    rm -rf node_modules
    rm -rf apps/*/node_modules
    rm -rf packages/*/node_modules
-   
+
    # Reinstall dependencies
    npm install
    ```
@@ -251,11 +260,13 @@ We follow a strict code style guide:
 ## Getting Help
 
 1. **Documentation**
+
    - Check the [official docs](https://docs.eremois.dev)
    - Review architecture guides
    - Search existing issues
 
 2. **Community**
+
    - Join our Discord server
    - Ask in GitHub discussions
    - Check Stack Overflow tags
@@ -263,4 +274,4 @@ We follow a strict code style guide:
 3. **Support**
    - Open GitHub issues
    - Email support@eremois.dev
-   - Contact team leads 
+   - Contact team leads

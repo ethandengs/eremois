@@ -27,4 +27,4 @@ export interface AuthContextType {
   signIn: (credentials: SignInCredentials) => Promise<void>;
   signUp: (credentials: SignUpCredentials) => Promise<void>;
   signOut: () => Promise<void>;
-} 
+}

@@ -1,5 +1,5 @@
-import * as tf from '@tensorflow/tfjs';
-import type { TimeBlock, PredictionInput, UserPattern } from './types';
+import * as tf from "@tensorflow/tfjs";
+import type { TimeBlock, PredictionInput, UserPattern } from "./types";
 
 interface TrainingLogs {
   loss?: number;
@@ -23,27 +23,31 @@ export class SchedulePredictor {
     const model = tf.sequential();
 
     // Input layer for time features and user patterns
-    model.add(tf.layers.dense({
-      units: 64,
-      activation: 'relu',
-      inputShape: [12], // Time + Energy + Task features
-    }));
+    model.add(
+      tf.layers.dense({
+        units: 64,
+        activation: "relu",
+        inputShape: [12], // Time + Energy + Task features
+      })
+    );
 
     // Hidden layers
-    model.add(tf.layers.dense({ units: 32, activation: 'relu' }));
+    model.add(tf.layers.dense({ units: 32, activation: "relu" }));
     model.add(tf.layers.dropout({ rate: 0.2 }));
-    model.add(tf.layers.dense({ units: 16, activation: 'relu' }));
+    model.add(tf.layers.dense({ units: 16, activation: "relu" }));
 
     // Output layer for schedule recommendations
-    model.add(tf.layers.dense({
-      units: 4, // [block_type, duration, start_time, energy_required]
-      activation: 'sigmoid',
-    }));
+    model.add(
+      tf.layers.dense({
+        units: 4, // [block_type, duration, start_time, energy_required]
+        activation: "sigmoid",
+      })
+    );
 
     model.compile({
       optimizer: tf.train.adam(0.001),
-      loss: 'meanSquaredError',
-      metrics: ['accuracy'],
+      loss: "meanSquaredError",
+      metrics: ["accuracy"],
     });
 
     return model;
@@ -52,7 +56,9 @@ export class SchedulePredictor {
   private async loadOrTrainModel(): Promise<void> {
     try {
       // Try to load from IndexedDB
-      const modelInfo = await tf.loadLayersModel('indexeddb://eremois-schedule-model');
+      const modelInfo = await tf.loadLayersModel(
+        "indexeddb://eremois-schedule-model"
+      );
       this.model = modelInfo;
     } catch {
       // Train new model if loading fails
@@ -72,24 +78,29 @@ export class SchedulePredictor {
       batchSize: 32,
       validationSplit: 0.2,
       callbacks: {
-        onEpochEnd: async (epoch: number, logs: TrainingLogs): Promise<void> => {
-          console.log(`Epoch ${epoch}: loss = ${logs.loss}, accuracy = ${logs.accuracy}`);
+        onEpochEnd: async (
+          epoch: number,
+          logs: TrainingLogs
+        ): Promise<void> => {
+          console.log(
+            `Epoch ${epoch}: loss = ${logs.loss}, accuracy = ${logs.accuracy}`
+          );
         },
       },
     });
 
     // Save the trained model
-    await this.model.save('indexeddb://eremois-schedule-model');
+    await this.model.save("indexeddb://eremois-schedule-model");
   }
 
   private prepareTrainingData(): { xs: tf.Tensor2D; ys: tf.Tensor2D } {
     if (!this.userPattern) {
-      throw new Error('User pattern not initialized');
+      throw new Error("User pattern not initialized");
     }
 
     // Convert user patterns to features
     const features = [
-      ...this.userPattern.preferredWorkingHours.map(h => h / 24),
+      ...this.userPattern.preferredWorkingHours.map((h) => h / 24),
       Object.values(this.userPattern.energyPattern),
       Object.values(this.userPattern.taskPreferences),
     ].flat();
@@ -102,7 +113,7 @@ export class SchedulePredictor {
 
   async predictNextBlock(input: PredictionInput): Promise<TimeBlock> {
     if (!this.model || !this.userPattern) {
-      throw new Error('Model not initialized');
+      throw new Error("Model not initialized");
     }
 
     // Prepare input tensor
@@ -134,17 +145,21 @@ export class SchedulePredictor {
       input.currentTime.getDay() / 7,
     ];
 
-    const blockFeatures = input.previousBlocks.slice(-3).map(block => [
-      ['FOCUS', 'BREAK', 'MEETING', 'TASK'].indexOf(block.type) / 4,
-      (block.endTime.getTime() - block.startTime.getTime()) / (24 * 60 * 60 * 1000),
-    ]).flat();
+    const blockFeatures = input.previousBlocks
+      .slice(-3)
+      .map((block) => [
+        ["FOCUS", "BREAK", "MEETING", "TASK"].indexOf(block.type) / 4,
+        (block.endTime.getTime() - block.startTime.getTime()) /
+          (24 * 60 * 60 * 1000),
+      ])
+      .flat();
 
     const features = [...timeFeatures, ...blockFeatures];
     return tf.tensor2d([features]);
   }
 
-  private convertToBlockType(value: number): TimeBlock['type'] {
-    const types: TimeBlock['type'][] = ['FOCUS', 'BREAK', 'MEETING', 'TASK'];
+  private convertToBlockType(value: number): TimeBlock["type"] {
+    const types: TimeBlock["type"][] = ["FOCUS", "BREAK", "MEETING", "TASK"];
     return types[Math.floor(value * types.length)];
   }
-} 
+}

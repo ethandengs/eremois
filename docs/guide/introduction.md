@@ -14,12 +14,14 @@ In Greek, "erēmois" refers to a wilderness or a quiet place where philosophers 
 ## Key Features
 
 ### 1. Smart Timeline
+
 - Circular visualization of your day
 - Real-time progress tracking
 - Intelligent time block suggestions
 - Multi-scale view options (H/D/W/M/Y)
 
 ### 2. AI Assistant
+
 - Learning from your preferences
 - Schedule optimization
 - Conflict resolution
@@ -27,6 +29,7 @@ In Greek, "erēmois" refers to a wilderness or a quiet place where philosophers 
 - Personalized suggestions
 
 ### 3. Task Management
+
 - Events (E): Time-specific activities
 - Tasks (T): To-do items
 - Projects (P): Long-term goals
@@ -35,4 +38,4 @@ In Greek, "erēmois" refers to a wilderness or a quiet place where philosophers 
 
 ## Getting Started
 
-To start using erēmois, check out our [Quick Start Guide](./quick-start.md) or dive into the [Architecture Overview](../architecture/overview.md) if you're interested in contributing to the project. 
+To start using erēmois, check out our [Quick Start Guide](./quick-start.md) or dive into the [Architecture Overview](../architecture/overview.md) if you're interested in contributing to the project.
