@@ -1,17 +1,17 @@
-blank_issues_enabled: false
-contact_links:
-  - name: erēmois Documentation
-    url: https://docs.eremois.dev
-    about: Check our documentation for answers to common questions
-  - name: erēmois Community Support
-    url: https://discord.gg/eremois
-    about: Ask and answer questions on our Discord server
-  - name: erēmois Security
-    url: mailto:security@eremois.dev
-    about: Please report security vulnerabilities here
-  - name: erēmois Feature Discussions
-    url: https://github.com/yourusername/eremois/discussions
-    about: Discuss ideas for new features
-  - name: erēmois Support
-    url: mailto:support@eremois.dev
-    about: Contact our support team for urgent issues 
+# blank_issues_enabled: false
+# contact_links:
+#   - name: erēmois Documentation
+#     url: https://docs.eremois.dev
+#     about: Check our documentation for answers to common questions
+#   - name: erēmois Community Support
+#     url: https://discord.gg/eremois
+#     about: Ask and answer questions on our Discord server
+#   - name: erēmois Security
+#     url: mailto:security@eremois.dev
+#     about: Please report security vulnerabilities here
+#   - name: erēmois Feature Discussions
+#     url: https://github.com/yourusername/eremois/discussions
+#     about: Discuss ideas for new features
+#   - name: erēmois Support
+#     url: mailto:support@eremois.dev
+#     about: Contact our support team for urgent issues 

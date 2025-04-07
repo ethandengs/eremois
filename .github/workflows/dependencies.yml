@@ -1,100 +1,100 @@
-name: Dependencies
+# name: Dependencies
 
-on:
-  schedule:
-    - cron: '0 0 * * 1' # Run every Monday at midnight
-  workflow_dispatch: # Allow manual trigger
+# on:
+#   schedule:
+#     - cron: '0 0 * * 1' # Run every Monday at midnight
+#   workflow_dispatch: # Allow manual trigger
 
-jobs:
-  update-dependencies:
-    name: Update Dependencies
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [18.x]
+# jobs:
+#   update-dependencies:
+#     name: Update Dependencies
+#     runs-on: ubuntu-latest
+#     strategy:
+#       matrix:
+#         node-version: [18.x]
 
-    steps:
-    - uses: actions/checkout@v3
+#     steps:
+#     - uses: actions/checkout@v3
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
+#     - name: Use Node.js ${{ matrix.node-version }}
+#       uses: actions/setup-node@v3
+#       with:
+#         node-version: ${{ matrix.node-version }}
+#         cache: 'npm'
 
-    - name: Check for updates
-      id: ncu
-      run: |
-        npm install -g npm-check-updates
-        ncu --packageFile package.json --target minor > updates.txt
-        echo "has_updates=$(test -s updates.txt && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
+#     - name: Check for updates
+#       id: ncu
+#       run: |
+#         npm install -g npm-check-updates
+#         ncu --packageFile package.json --target minor > updates.txt
+#         echo "has_updates=$(test -s updates.txt && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
 
-    - name: Create Pull Request
-      if: steps.ncu.outputs.has_updates == 'true'
-      uses: peter-evans/create-pull-request@v5
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        commit-message: 'chore(deps): update dependencies'
-        title: '⬆️ Update dependencies'
-        body: |
-          This PR updates project dependencies to their latest minor versions.
+#     - name: Create Pull Request
+#       if: steps.ncu.outputs.has_updates == 'true'
+#       uses: peter-evans/create-pull-request@v5
+#       with:
+#         token: ${{ secrets.GITHUB_TOKEN }}
+#         commit-message: 'chore(deps): update dependencies'
+#         title: '⬆️ Update dependencies'
+#         body: |
+#           This PR updates project dependencies to their latest minor versions.
           
-          <details>
-          <summary>Updates</summary>
+#           <details>
+#           <summary>Updates</summary>
           
-          ```
-          $(cat updates.txt)
-          ```
+#           ```
+#           $(cat updates.txt)
+#           ```
           
-          </details>
+#           </details>
           
-          Please review the changes and ensure all tests pass before merging.
-        branch: chore/update-dependencies
-        base: main
-        labels: dependencies
-        assignees: ${{ github.repository_owner }}
-        reviewers: ${{ github.repository_owner }}
-        delete-branch: true
+#           Please review the changes and ensure all tests pass before merging.
+#         branch: chore/update-dependencies
+#         base: main
+#         labels: dependencies
+#         assignees: ${{ github.repository_owner }}
+#         reviewers: ${{ github.repository_owner }}
+#         delete-branch: true
 
-    - name: Check for security updates
-      id: audit
-      run: |
-        npm audit > audit.txt || true
-        echo "has_vulnerabilities=$(grep -q 'found [1-9][0-9]* vulnerabilities' audit.txt && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
+#     - name: Check for security updates
+#       id: audit
+#       run: |
+#         npm audit > audit.txt || true
+#         echo "has_vulnerabilities=$(grep -q 'found [1-9][0-9]* vulnerabilities' audit.txt && echo 'true' || echo 'false')" >> $GITHUB_OUTPUT
 
-    - name: Create Security Issue
-      if: steps.audit.outputs.has_vulnerabilities == 'true'
-      uses: actions/github-script@v6
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        script: |
-          const fs = require('fs');
-          const auditReport = fs.readFileSync('audit.txt', 'utf8');
+#     - name: Create Security Issue
+#       if: steps.audit.outputs.has_vulnerabilities == 'true'
+#       uses: actions/github-script@v6
+#       with:
+#         github-token: ${{ secrets.GITHUB_TOKEN }}
+#         script: |
+#           const fs = require('fs');
+#           const auditReport = fs.readFileSync('audit.txt', 'utf8');
           
-          await github.rest.issues.create({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            title: '🔒 Security vulnerabilities in dependencies',
-            body: `Security vulnerabilities have been found in project dependencies.
+#           await github.rest.issues.create({
+#             owner: context.repo.owner,
+#             repo: context.repo.repo,
+#             title: '🔒 Security vulnerabilities in dependencies',
+#             body: `Security vulnerabilities have been found in project dependencies.
             
-            <details>
-            <summary>Audit Report</summary>
+#             <details>
+#             <summary>Audit Report</summary>
             
-            \`\`\`
-            ${auditReport}
-            \`\`\`
+#             \`\`\`
+#             ${auditReport}
+#             \`\`\`
             
-            </details>
+#             </details>
             
-            Please review and address these vulnerabilities as soon as possible.`,
-            labels: ['security', 'dependencies']
-          });
+#             Please review and address these vulnerabilities as soon as possible.`,
+#             labels: ['security', 'dependencies']
+#           });
 
-    - name: Notify on failure
-      if: failure()
-      uses: slackapi/slack-github-action@v1.23.0
-      with:
-        channel-id: 'dependencies'
-        slack-message: '❌ Dependency update workflow failed'
-      env:
-        SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }} 
+#     - name: Notify on failure
+#       if: failure()
+#       uses: slackapi/slack-github-action@v1.23.0
+#       with:
+#         channel-id: 'dependencies'
+#         slack-message: '❌ Dependency update workflow failed'
+#       env:
+#         SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }} 

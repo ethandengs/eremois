@@ -1,0 +1,208 @@
+2025-04-07T08:29:53.926316Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".turbo/cookies/.turbo-cookie"), AnchoredSystemPathBuf(".turbo/cookies/1.cookie")}
+2025-04-07T08:29:53.926329Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-07T08:34:53.917310Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".github/workflows/ci.yml")}
+2025-04-07T08:34:53.917341Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-07T08:35:01.617146Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".github/workflows/ci.yml")}
+2025-04-07T08:35:01.617156Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-07T08:35:29.215671Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".github/workflows/docs.yml")}
+2025-04-07T08:35:29.215679Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-07T08:35:32.216588Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".github/workflows/docs.yml")}
+2025-04-07T08:35:32.216597Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-07T08:36:04.114376Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".github/workflows/stale.yml")}
+2025-04-07T08:36:04.114390Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-07T08:36:06.915227Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".github/workflows/stale.yml")}
+2025-04-07T08:36:06.915235Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-07T08:37:03.013389Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".github/workflows/release.yml")}
+2025-04-07T08:37:03.013398Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-07T08:37:04.813962Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".github/workflows/release.yml")}
+2025-04-07T08:37:04.813971Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-07T08:38:09.011602Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".github/workflows/maintenance.yml")}
+2025-04-07T08:38:09.011624Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-07T08:38:11.511120Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".github/workflows/maintenance.yml")}
+2025-04-07T08:38:11.511130Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-07T08:38:47.309536Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".github/workflows/dependencies.yml")}
+2025-04-07T08:38:47.309547Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-07T08:39:26.908064Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/web/Dockerfile")}
+2025-04-07T08:39:26.908075Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/web"), path: AnchoredSystemPathBuf("apps/web") }}))
+2025-04-07T08:39:28.608636Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/web/Dockerfile")}
+2025-04-07T08:39:28.608645Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/web"), path: AnchoredSystemPathBuf("apps/web") }}))
+2025-04-07T08:39:37.014330Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/api/Dockerfile")}
+2025-04-07T08:39:37.014626Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/api"), path: AnchoredSystemPathBuf("apps/api") }}))
+2025-04-07T08:39:39.508738Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/api/Dockerfile")}
+2025-04-07T08:39:39.508749Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/api"), path: AnchoredSystemPathBuf("apps/api") }}))
+2025-04-07T08:39:50.308101Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("docker-compose.yml")}
+2025-04-07T08:39:50.308111Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-07T08:39:52.207833Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("docker-compose.yml")}
+2025-04-07T08:39:52.207846Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-07T08:42:23.604094Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".github/workflows/docs.yml"), AnchoredSystemPathBuf(".github/workflows/ci.yml"), AnchoredSystemPathBuf(".github/workflows/stale.yml")}
+2025-04-07T08:42:23.604147Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-07T08:42:23.704705Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".github/workflows/release.yml"), AnchoredSystemPathBuf(".github/workflows/maintenance.yml")}
+2025-04-07T08:42:23.704722Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-07T08:42:23.820616Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".github/workflows/dependencies.yml"), AnchoredSystemPathBuf("apps/web/Dockerfile")}
+2025-04-07T08:42:23.820641Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }, WorkspacePackage { name: Other("@eremois/web"), path: AnchoredSystemPathBuf("apps/web") }}))
+2025-04-07T08:42:23.926459Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/api/Dockerfile"), AnchoredSystemPathBuf("apps/web/Dockerfile")}
+2025-04-07T08:42:23.926469Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/api"), path: AnchoredSystemPathBuf("apps/api") }, WorkspacePackage { name: Other("@eremois/web"), path: AnchoredSystemPathBuf("apps/web") }}))
+2025-04-07T08:42:23.929614Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-04-07T08:42:24.003088Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("docker-compose.yml")}
+2025-04-07T08:42:24.003106Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-07T08:42:39.802522Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".github/workflows/ci.yml")}
+2025-04-07T08:42:39.802533Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-07T08:42:44.503220Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".github/workflows/dependencies.yml")}
+2025-04-07T08:42:44.503242Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-07T08:42:49.102261Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".github/workflows/docs.yml")}
+2025-04-07T08:42:49.102274Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-07T08:42:54.202336Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".github/workflows/maintenance.yml")}
+2025-04-07T08:42:54.202354Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-07T08:42:58.402095Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".github/workflows/release.yml")}
+2025-04-07T08:42:58.402111Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-07T08:43:02.802206Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".github/workflows/stale.yml")}
+2025-04-07T08:43:02.802218Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-07T08:43:25.300962Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".github/ISSUE_TEMPLATE/config.yml")}
+2025-04-07T08:43:25.301015Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-07T08:43:29.201724Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf(".github/ISSUE_TEMPLATE/config.yml")}
+2025-04-07T08:43:29.201748Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-07T08:51:40.585439Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/storage"), AnchoredSystemPathBuf("packages/storage/src"), AnchoredSystemPathBuf("packages/storage/src/encrypted"), AnchoredSystemPathBuf("packages/ui/src/themes"), AnchoredSystemPathBuf("packages/core/src/timeline"), AnchoredSystemPathBuf("packages/core/src/sync"), AnchoredSystemPathBuf("packages/storage/src/adapters"), AnchoredSystemPathBuf("packages/core/src/tasks")}
+2025-04-07T08:51:40.585461Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }, WorkspacePackage { name: Other("@eremois/ui"), path: AnchoredSystemPathBuf("packages/ui") }, WorkspacePackage { name: Other("@eremois/core"), path: AnchoredSystemPathBuf("packages/core") }}))
+2025-04-07T08:51:55.484591Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/core/package.json")}
+2025-04-07T08:51:55.484601Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/core"), path: AnchoredSystemPathBuf("packages/core") }}))
+2025-04-07T08:52:07.384177Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/core/tsconfig.json")}
+2025-04-07T08:52:07.384185Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/core"), path: AnchoredSystemPathBuf("packages/core") }}))
+2025-04-07T08:52:21.083084Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/core/src/tasks/types.ts")}
+2025-04-07T08:52:21.083093Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/core"), path: AnchoredSystemPathBuf("packages/core") }}))
+2025-04-07T08:52:23.484120Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/core/src/tasks/types.ts")}
+2025-04-07T08:52:23.484157Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/core"), path: AnchoredSystemPathBuf("packages/core") }}))
+2025-04-07T08:52:49.693715Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/core/src/tasks/TaskManager.ts")}
+2025-04-07T08:52:49.693732Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/core"), path: AnchoredSystemPathBuf("packages/core") }}))
+2025-04-07T08:52:51.583591Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/core/src/tasks/TaskManager.ts")}
+2025-04-07T08:52:51.583603Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/core"), path: AnchoredSystemPathBuf("packages/core") }}))
+2025-04-07T08:53:04.782935Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/core/package.json")}
+2025-04-07T08:53:04.782953Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/core"), path: AnchoredSystemPathBuf("packages/core") }}))
+2025-04-07T08:53:09.384767Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("package-lock.json")}
+2025-04-07T08:53:09.384775Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-07T08:53:11.082956Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/core/package.json")}
+2025-04-07T08:53:11.082967Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/core"), path: AnchoredSystemPathBuf("packages/core") }}))
+2025-04-07T08:53:11.382585Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("package-lock.json")}
+2025-04-07T08:53:11.382595Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-07T08:53:13.783157Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/core/package.json")}
+2025-04-07T08:53:13.783169Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/core"), path: AnchoredSystemPathBuf("packages/core") }}))
+2025-04-07T08:53:14.082109Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("package-lock.json")}
+2025-04-07T08:53:14.082128Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-07T08:53:43.981282Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/core/src/tasks/TaskManager.ts")}
+2025-04-07T08:53:43.981303Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/core"), path: AnchoredSystemPathBuf("packages/core") }}))
+2025-04-07T08:54:16.279941Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/core/src/tasks/__tests__/TaskManager.test.ts"), AnchoredSystemPathBuf("packages/core/src/tasks/__tests__")}
+2025-04-07T08:54:16.279966Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/core"), path: AnchoredSystemPathBuf("packages/core") }}))
+2025-04-07T08:54:18.579640Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/core/src/tasks/__tests__/TaskManager.test.ts")}
+2025-04-07T08:54:18.579661Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/core"), path: AnchoredSystemPathBuf("packages/core") }}))
+2025-04-07T08:54:29.279051Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/core/src/index.ts")}
+2025-04-07T08:54:29.279062Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/core"), path: AnchoredSystemPathBuf("packages/core") }}))
+2025-04-07T08:54:40.109526Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/core/jest.config.js")}
+2025-04-07T08:54:40.110035Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/core"), path: AnchoredSystemPathBuf("packages/core") }}))
+2025-04-07T08:54:42.479672Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/core/jest.config.js")}
+2025-04-07T08:54:42.479698Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/core"), path: AnchoredSystemPathBuf("packages/core") }}))
+2025-04-07T08:58:09.173118Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/core/package.json")}
+2025-04-07T08:58:09.173139Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/core"), path: AnchoredSystemPathBuf("packages/core") }}))
+2025-04-07T08:58:09.173155Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-04-07T08:59:15.270838Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/core/src/storage"), AnchoredSystemPathBuf("packages/core/src/storage/types.ts")}
+2025-04-07T08:59:15.270852Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/core"), path: AnchoredSystemPathBuf("packages/core") }}))
+2025-04-07T08:59:17.070691Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/core/src/storage/types.ts")}
+2025-04-07T08:59:17.070710Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/core"), path: AnchoredSystemPathBuf("packages/core") }}))
+2025-04-07T08:59:27.271005Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/core/package.json")}
+2025-04-07T08:59:27.271014Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/core"), path: AnchoredSystemPathBuf("packages/core") }}))
+2025-04-07T08:59:27.570442Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("package-lock.json")}
+2025-04-07T08:59:27.570452Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-07T08:59:29.770039Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/core/package.json")}
+2025-04-07T08:59:29.770050Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/core"), path: AnchoredSystemPathBuf("packages/core") }}))
+2025-04-07T08:59:30.069427Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("package-lock.json")}
+2025-04-07T08:59:30.069440Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Root, path: AnchoredSystemPathBuf("") }}))
+2025-04-07T08:59:46.369850Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/core/src/storage/encryption.ts")}
+2025-04-07T08:59:46.369863Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/core"), path: AnchoredSystemPathBuf("packages/core") }}))
+2025-04-07T08:59:48.769803Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/core/src/storage/encryption.ts")}
+2025-04-07T08:59:48.769813Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/core"), path: AnchoredSystemPathBuf("packages/core") }}))
+2025-04-07T09:00:11.469609Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/core/src/storage/IndexedDBStorage.ts")}
+2025-04-07T09:00:11.469620Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/core"), path: AnchoredSystemPathBuf("packages/core") }}))
+2025-04-07T09:00:15.469062Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/core/src/storage/IndexedDBStorage.ts")}
+2025-04-07T09:00:15.469070Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/core"), path: AnchoredSystemPathBuf("packages/core") }}))
+2025-04-07T09:00:23.768870Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/core/src/storage/IndexedDBStorage.ts")}
+2025-04-07T09:00:23.768879Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/core"), path: AnchoredSystemPathBuf("packages/core") }}))
+2025-04-07T09:00:57.267444Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/core/src/storage/__tests__/IndexedDBStorage.test.ts"), AnchoredSystemPathBuf("packages/core/src/storage/__tests__")}
+2025-04-07T09:00:57.267457Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/core"), path: AnchoredSystemPathBuf("packages/core") }}))
+2025-04-07T09:00:59.167344Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/core/src/storage/__tests__/IndexedDBStorage.test.ts")}
+2025-04-07T09:00:59.167357Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/core"), path: AnchoredSystemPathBuf("packages/core") }}))
+2025-04-07T09:01:40.566440Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/core/src/tasks/TaskManager.ts")}
+2025-04-07T09:01:40.566450Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/core"), path: AnchoredSystemPathBuf("packages/core") }}))
+2025-04-07T09:02:25.464400Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/core/src/tasks/__tests__/TaskManager.test.ts")}
+2025-04-07T09:02:25.464408Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/core"), path: AnchoredSystemPathBuf("packages/core") }}))
+2025-04-07T09:03:15.563101Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/core/src/storage/__tests__/IndexedDBStorage.test.ts")}
+2025-04-07T09:03:15.563126Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/core"), path: AnchoredSystemPathBuf("packages/core") }}))
+2025-04-07T09:04:00.561349Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/core/src/tasks/__tests__/TaskManager.test.ts")}
+2025-04-07T09:04:00.561368Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/core"), path: AnchoredSystemPathBuf("packages/core") }}))
+2025-04-07T09:04:52.559952Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/core/src/tasks/__tests__/TaskManager.test.ts")}
+2025-04-07T09:04:52.559980Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/core"), path: AnchoredSystemPathBuf("packages/core") }}))
+2025-04-07T09:05:15.559419Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/core/src/tasks/__tests__/TaskManager.test.ts")}
+2025-04-07T09:05:15.559428Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/core"), path: AnchoredSystemPathBuf("packages/core") }}))
+2025-04-07T09:05:41.558333Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("packages/core/src/tasks/TaskManager.ts")}
+2025-04-07T09:05:41.558357Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/core"), path: AnchoredSystemPathBuf("packages/core") }}))
+2025-04-07T09:40:38.394049Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/desktop/src"), AnchoredSystemPathBuf("apps/desktop/src/pages"), AnchoredSystemPathBuf("apps/desktop/src/components"), AnchoredSystemPathBuf("apps/desktop/src/__tests__")}
+2025-04-07T09:40:38.394396Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/desktop"), path: AnchoredSystemPathBuf("apps/desktop") }}))
+2025-04-07T09:40:54.490404Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/desktop/package.json")}
+2025-04-07T09:40:54.490414Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/desktop"), path: AnchoredSystemPathBuf("apps/desktop") }}))
+2025-04-07T09:41:02.290078Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/desktop/jest.config.js")}
+2025-04-07T09:41:02.290088Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/desktop"), path: AnchoredSystemPathBuf("apps/desktop") }}))
+2025-04-07T09:41:04.489769Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/desktop/jest.config.js")}
+2025-04-07T09:41:04.489786Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/desktop"), path: AnchoredSystemPathBuf("apps/desktop") }}))
+2025-04-07T09:41:16.789652Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/desktop/src/__tests__/setup.ts")}
+2025-04-07T09:41:16.789672Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/desktop"), path: AnchoredSystemPathBuf("apps/desktop") }}))
+2025-04-07T09:41:19.489282Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/desktop/src/__tests__/setup.ts")}
+2025-04-07T09:41:19.489292Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/desktop"), path: AnchoredSystemPathBuf("apps/desktop") }}))
+2025-04-07T09:41:26.688888Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/desktop/playwright.config.ts")}
+2025-04-07T09:41:26.688898Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/desktop"), path: AnchoredSystemPathBuf("apps/desktop") }}))
+2025-04-07T09:41:28.489069Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/desktop/playwright.config.ts")}
+2025-04-07T09:41:28.489078Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/desktop"), path: AnchoredSystemPathBuf("apps/desktop") }}))
+2025-04-07T09:41:45.987778Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/desktop/src/components/TaskCard/TaskCard.tsx"), AnchoredSystemPathBuf("apps/desktop/src/components/TaskCard")}
+2025-04-07T09:41:45.987793Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/desktop"), path: AnchoredSystemPathBuf("apps/desktop") }}))
+2025-04-07T09:41:48.487587Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/desktop/src/components/TaskCard/TaskCard.tsx")}
+2025-04-07T09:41:48.487595Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/desktop"), path: AnchoredSystemPathBuf("apps/desktop") }}))
+2025-04-07T09:42:02.089140Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/desktop/src/components/TaskCard/__tests__"), AnchoredSystemPathBuf("apps/desktop/src/components/TaskCard/__tests__/TaskCard.test.tsx")}
+2025-04-07T09:42:02.089152Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/desktop"), path: AnchoredSystemPathBuf("apps/desktop") }}))
+2025-04-07T09:42:04.487440Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/desktop/src/components/TaskCard/__tests__/TaskCard.test.tsx")}
+2025-04-07T09:42:04.487450Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/desktop"), path: AnchoredSystemPathBuf("apps/desktop") }}))
+2025-04-07T09:42:16.087655Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/desktop/src/components/TaskCard/TaskCard.stories.tsx")}
+2025-04-07T09:42:16.087669Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/desktop"), path: AnchoredSystemPathBuf("apps/desktop") }}))
+2025-04-07T09:42:20.486946Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/desktop/src/components/TaskCard/TaskCard.stories.tsx")}
+2025-04-07T09:42:20.486955Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/desktop"), path: AnchoredSystemPathBuf("apps/desktop") }}))
+2025-04-07T09:42:37.586687Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/desktop/e2e/task-management.spec.ts"), AnchoredSystemPathBuf("apps/desktop/e2e")}
+2025-04-07T09:42:37.586700Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/desktop"), path: AnchoredSystemPathBuf("apps/desktop") }}))
+2025-04-07T09:42:39.486451Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/desktop/e2e/task-management.spec.ts")}
+2025-04-07T09:42:39.486461Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/desktop"), path: AnchoredSystemPathBuf("apps/desktop") }}))
+2025-04-07T09:43:00.486493Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/desktop/e2e/task-management.spec.ts")}
+2025-04-07T09:43:00.486504Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/desktop"), path: AnchoredSystemPathBuf("apps/desktop") }}))
+2025-04-07T09:43:18.485916Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/desktop/e2e/task-management.spec.ts")}
+2025-04-07T09:43:18.485934Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/desktop"), path: AnchoredSystemPathBuf("apps/desktop") }}))
+2025-04-07T09:43:30.385002Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/desktop/apps/desktop"), AnchoredSystemPathBuf("apps/desktop/apps")}
+2025-04-07T09:43:30.385011Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/desktop"), path: AnchoredSystemPathBuf("apps/desktop") }}))
+2025-04-07T09:43:30.385028Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
+2025-04-07T09:43:30.785014Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/desktop/package.json")}
+2025-04-07T09:43:30.785023Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/desktop"), path: AnchoredSystemPathBuf("apps/desktop") }}))
+2025-04-07T09:44:01.184736Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/desktop/package.json")}
+2025-04-07T09:44:01.184762Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/desktop"), path: AnchoredSystemPathBuf("apps/desktop") }}))
+2025-04-07T09:44:03.984128Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/desktop/package.json")}
+2025-04-07T09:44:03.984139Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/desktop"), path: AnchoredSystemPathBuf("apps/desktop") }}))
+2025-04-07T09:44:04.183761Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/desktop/jest.config.js")}
+2025-04-07T09:44:04.183778Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/desktop"), path: AnchoredSystemPathBuf("apps/desktop") }}))
+2025-04-07T09:44:04.284873Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/desktop/jest.config.js")}
+2025-04-07T09:44:04.284892Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/desktop"), path: AnchoredSystemPathBuf("apps/desktop") }}))
+2025-04-07T09:44:04.390434Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/desktop/src/__tests__/setup.ts")}
+2025-04-07T09:44:04.390453Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/desktop"), path: AnchoredSystemPathBuf("apps/desktop") }}))
+2025-04-07T09:44:04.584580Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/desktop/playwright.config.ts")}
+2025-04-07T09:44:04.584599Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/desktop"), path: AnchoredSystemPathBuf("apps/desktop") }}))
+2025-04-07T09:44:04.684822Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/desktop/src/components/TaskCard/TaskCard.tsx")}
+2025-04-07T09:44:04.684851Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/desktop"), path: AnchoredSystemPathBuf("apps/desktop") }}))
+2025-04-07T09:44:04.783370Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/desktop/src/components/TaskCard/__tests__/TaskCard.test.tsx")}
+2025-04-07T09:44:04.783389Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/desktop"), path: AnchoredSystemPathBuf("apps/desktop") }}))
+2025-04-07T09:44:04.883793Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/desktop/src/components/TaskCard/TaskCard.stories.tsx")}
+2025-04-07T09:44:04.883807Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/desktop"), path: AnchoredSystemPathBuf("apps/desktop") }}))
+2025-04-07T09:44:04.983681Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/desktop/e2e/task-management.spec.ts")}
+2025-04-07T09:44:04.983850Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/desktop"), path: AnchoredSystemPathBuf("apps/desktop") }}))
+2025-04-07T09:44:05.083582Z  WARN turborepo_lib::package_changes_watcher: changed_files: {AnchoredSystemPathBuf("apps/desktop/src/components/TaskCard"), AnchoredSystemPathBuf("apps/desktop/e2e")}
+2025-04-07T09:44:05.083592Z  WARN turborepo_lib::package_changes_watcher: changed_packages: Ok(Some({WorkspacePackage { name: Other("@eremois/desktop"), path: AnchoredSystemPathBuf("apps/desktop") }}))
+2025-04-07T09:44:05.091514Z  WARN turborepo_lib::package_changes_watcher: hashes are the same, no need to rerun
