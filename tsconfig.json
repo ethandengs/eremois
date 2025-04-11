@@ -1,15 +1,24 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "noEmit": true,
     "allowJs": true,
     "jsx": "react-jsx",
-    "moduleResolution": "bundler",
+    "moduleResolution": "node",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "emitDeclarationOnly": true,
+    "composite": true,
+    "baseUrl": ".",
+    "paths": {
+      "@eremois/api/*": ["apps/api/src/*"],
+      "@eremois/web/*": ["apps/web/src/*"],
+      "@eremois/mobile/*": ["apps/mobile/src/*"],
+      "@eremois/desktop/*": ["apps/desktop/src/*"],
+      "@eremois/*": ["packages/*/src"]
+    }
   },
   "include": [
     "apps/**/*.ts",

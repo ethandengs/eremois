@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { format, isAfter, isBefore, startOfDay } from 'date-fns';
 
@@ -94,11 +94,12 @@ export const TimeCircle: React.FC<TimeCircleProps> = ({ tasks }) => {
           {Array.from({ length: 24 }).map((_, i) => {
             const angle = (i / 24) * 360;
             const isCurrentHour = i === currentHour;
+            const markerLength = circumference / 24; // Use circumference for marker length
             return (
               <motion.line
                 key={i}
-                x1={250 + (radius - 20) * Math.cos((angle * Math.PI) / 180)}
-                y1={250 + (radius - 20) * Math.sin((angle * Math.PI) / 180)}
+                x1={250 + (radius - markerLength * 0.1) * Math.cos((angle * Math.PI) / 180)}
+                y1={250 + (radius - markerLength * 0.1) * Math.sin((angle * Math.PI) / 180)}
                 x2={250 + radius * Math.cos((angle * Math.PI) / 180)}
                 y2={250 + radius * Math.sin((angle * Math.PI) / 180)}
                 stroke={isCurrentHour ? '#FF4B4B' : '#4A5568'}

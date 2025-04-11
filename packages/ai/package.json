@@ -18,14 +18,19 @@
   },
   "dependencies": {
     "@tensorflow/tfjs": "4.17.0",
-    "@tensorflow/tfjs-core": "4.17.0",
-    "onnxruntime-web": "1.17.0",
-    "comlink": "4.4.1"
+    "@tensorflow/tfjs-backend-webgl": "^4.17.0",
+    "@tensorflow/tfjs-converter": "^4.17.0",
+    "@tensorflow/tfjs-core": "^4.17.0",
+    "@tensorflow/tfjs-layers": "^4.17.0",
+    "@tensorflow/tfjs-node": "4.17.0",
+    "comlink": "4.4.1",
+    "onnxruntime-web": "1.17.0"
   },
   "devDependencies": {
     "@jest/types": "^29.5.0",
-    "@types/jest": "^29.5.0",
-    "@types/node": "^20.0.0",
+    "@tensorflow/tfjs-node-gpu": "4.17.0",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^20.17.30",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "eslint": "^8.0.0",
@@ -37,6 +42,6 @@
     "typescript": "^5.0.0"
   },
   "peerDependencies": {
-    "@eremois/core": "workspace:*"
+    "@eremois/core": "^0.1.0"
   }
-} 
+}

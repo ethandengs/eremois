@@ -1,4 +1,6 @@
 import * as tf from '@tensorflow/tfjs';
+import type { Sequential, Tensor, Tensor2D } from '@tensorflow/tfjs-layers';
+import type { Logs } from '@tensorflow/tfjs-core';
 import type { TimeBlock, PredictionInput, UserPattern } from './types';
 
 interface TrainingLogs {
@@ -10,7 +12,7 @@ interface TrainingLogs {
 }
 
 export class SchedulePredictor {
-  private model: tf.LayersModel | null = null;
+  private model: Sequential | null = null;
   private userPattern: UserPattern | null = null;
 
   async initialize(userPattern: UserPattern): Promise<void> {
@@ -19,7 +21,7 @@ export class SchedulePredictor {
     await this.loadOrTrainModel();
   }
 
-  private async createModel(): Promise<tf.LayersModel> {
+  private async createModel(): Promise<Sequential> {
     const model = tf.sequential();
 
     // Input layer for time features and user patterns
@@ -52,7 +54,7 @@ export class SchedulePredictor {
   private async loadOrTrainModel(): Promise<void> {
     try {
       // Try to load from IndexedDB
-      const modelInfo = await tf.loadLayersModel('indexeddb://eremois-schedule-model');
+      const modelInfo = await tf.loadLayersModel('indexeddb://eremois-schedule-model') as Sequential;
       this.model = modelInfo;
     } catch {
       // Train new model if loading fails
@@ -72,8 +74,8 @@ export class SchedulePredictor {
       batchSize: 32,
       validationSplit: 0.2,
       callbacks: {
-        onEpochEnd: async (epoch: number, logs: TrainingLogs): Promise<void> => {
-          console.log(`Epoch ${epoch}: loss = ${logs.loss}, accuracy = ${logs.accuracy}`);
+        onEpochEnd: async (epoch: number, logs?: Logs): Promise<void> => {
+          console.log(`Epoch ${epoch}: loss = ${logs?.loss}, accuracy = ${logs?.accuracy}`);
         },
       },
     });
@@ -82,7 +84,7 @@ export class SchedulePredictor {
     await this.model.save('indexeddb://eremois-schedule-model');
   }
 
-  private prepareTrainingData(): { xs: tf.Tensor2D; ys: tf.Tensor2D } {
+  private prepareTrainingData(): { xs: Tensor2D; ys: Tensor2D } {
     if (!this.userPattern) {
       throw new Error('User pattern not initialized');
     }
@@ -92,7 +94,7 @@ export class SchedulePredictor {
       ...this.userPattern.preferredWorkingHours.map(h => h / 24),
       Object.values(this.userPattern.energyPattern),
       Object.values(this.userPattern.taskPreferences),
-    ].flat();
+    ].flatMap(x => x);
 
     return {
       xs: tf.tensor2d([features]),
@@ -109,35 +111,36 @@ export class SchedulePredictor {
     const inputTensor = this.preparePredictionInput(input);
 
     // Make prediction
-    const prediction = this.model.predict(inputTensor) as tf.Tensor;
+    const prediction = this.model.predict(inputTensor) as Tensor;
     const [blockType, duration, startTime, energy] = await prediction.data();
 
     prediction.dispose(); // Clean up tensor
     inputTensor.dispose(); // Clean up tensor
 
+    const now = new Date();
     // Convert prediction to TimeBlock
     const block: TimeBlock = {
       id: crypto.randomUUID(),
       type: this.convertToBlockType(blockType),
-      startTime: new Date(),
-      endTime: new Date(Date.now() + duration * 60000),
+      start: now,
+      end: new Date(now.getTime() + duration * 60000),
       energy,
-      title: `${this.convertToBlockType(blockType)} Session`,
+      productivity: 0.8, // Default productivity score
     };
 
     return block;
   }
 
-  private preparePredictionInput(input: PredictionInput): tf.Tensor2D {
+  private preparePredictionInput(input: PredictionInput): Tensor2D {
     const timeFeatures = [
-      input.currentTime.getHours() / 24,
-      input.currentTime.getDay() / 7,
+      input.timeOfDay,
+      input.dayOfWeek,
     ];
 
-    const blockFeatures = input.previousBlocks.slice(-3).map(block => [
+    const blockFeatures = input.previousBlocks.slice(-3).flatMap(block => [
       ['FOCUS', 'BREAK', 'MEETING', 'TASK'].indexOf(block.type) / 4,
-      (block.endTime.getTime() - block.startTime.getTime()) / (24 * 60 * 60 * 1000),
-    ]).flat();
+      (block.end.getTime() - block.start.getTime()) / (24 * 60 * 60 * 1000),
+    ]);
 
     const features = [...timeFeatures, ...blockFeatures];
     return tf.tensor2d([features]);

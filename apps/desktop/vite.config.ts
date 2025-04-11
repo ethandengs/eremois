@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import path from 'node:path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -12,6 +13,13 @@ export default defineConfig({
   },
   // to make use of `TAURI_PLATFORM`, `TAURI_ARCH`, etc
   envPrefix: ['VITE_', 'TAURI_'],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+      '@eremois/ui': path.resolve(__dirname, '../../packages/ui/src'),
+      '@eremois/core': path.resolve(__dirname, '../../packages/core/src')
+    }
+  },
   build: {
     // Tauri supports es2021
     target: ['es2021', 'chrome100', 'safari13'],

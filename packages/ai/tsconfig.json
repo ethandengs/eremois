@@ -8,9 +8,16 @@
     "declarationMap": true,
     "sourceMap": true,
     "jsx": "react-jsx",
-    "types": ["node", "jest", "@tensorflow/tfjs"],
+    "types": ["node", "jest"],
+    "typeRoots": [
+      "../../node_modules/@types",
+      "./node_modules/@types"
+    ],
     "paths": {
-      "@eremois/core": ["../core/src"]
+      "@eremois/core": ["../core/src"],
+      "@tensorflow/tfjs": ["../../node_modules/@tensorflow/tfjs/dist/index"],
+      "@tensorflow/tfjs-core": ["../../node_modules/@tensorflow/tfjs-core/dist/index"],
+      "@tensorflow/tfjs-node": ["../../node_modules/@tensorflow/tfjs-node/dist/index"]
     }
   },
   "include": ["src/**/*"],

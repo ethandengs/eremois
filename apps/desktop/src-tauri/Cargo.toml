@@ -2,7 +2,7 @@
 name = "eremois-desktop"
 version = "0.1.0"
 description = "Privacy-first time management with Edge AI"
-authors = ["Eremois Team"]
+authors = ["eremois Team"]
 license = ""
 repository = ""
 default-run = "eremois-desktop"

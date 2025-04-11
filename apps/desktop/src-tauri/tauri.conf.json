@@ -7,7 +7,7 @@
     "distDir": "../dist"
   },
   "package": {
-    "productName": "Eremois",
+    "productName": "eremois",
     "version": "0.1.0"
   },
   "tauri": {
@@ -62,7 +62,7 @@
         "fullscreen": false,
         "height": 800,
         "resizable": true,
-        "title": "Eremois",
+        "title": "eremois",
         "width": 1200
       }
     ]

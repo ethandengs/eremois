@@ -1,10 +1,10 @@
 # @eremois/core
 
-Core business logic package for the Eremois time management system.
+Core business logic package for the eremois time management system.
 
 ## Overview
 
-This package contains the fundamental business logic and services that power Eremois's time management capabilities. It implements the core functionality for timeline management, task handling, and user pattern analysis.
+This package contains the fundamental business logic and services that power eremois's time management capabilities. It implements the core functionality for timeline management, task handling, and user pattern analysis.
 
 ## Structure
 

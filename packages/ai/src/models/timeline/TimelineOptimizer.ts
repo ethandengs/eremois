@@ -40,7 +40,7 @@ export class TimelineOptimizer implements BaseModel<TimelineData, OptimizedTimel
   readonly metadata: ModelMetadata = {
     version: { major: 1, minor: 0, patch: 0 },
     description: 'Optimizes task schedules based on constraints and preferences',
-    author: 'Eremois Team',
+    author: 'eremois Team',
     license: 'MIT',
     requirements: {
       memory: 256, // MB

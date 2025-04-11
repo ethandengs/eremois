@@ -1,0 +1,91 @@
+
+
+> @eremois/ai@0.1.0 typecheck
+> tsc --noEmit
+
+[1G[0K[96msrc/models/predictor.ts[0m:[93m2[0m:[93m15[0m - [91merror[0m[90m TS2305: [0mModule '"@tensorflow/tfjs"' has no exported member 'LayersModel'.
+
+[7m2[0m import type { LayersModel, Tensor, Tensor2D, Logs } from '@tensorflow/tfjs';
+[7m [0m [91m              ~~~~~~~~~~~[0m
+
+[96msrc/models/predictor.ts[0m:[93m2[0m:[93m28[0m - [91merror[0m[90m TS2305: [0mModule '"@tensorflow/tfjs"' has no exported member 'Tensor'.
+
+[7m2[0m import type { LayersModel, Tensor, Tensor2D, Logs } from '@tensorflow/tfjs';
+[7m [0m [91m                           ~~~~~~[0m
+
+[96msrc/models/predictor.ts[0m:[93m2[0m:[93m36[0m - [91merror[0m[90m TS2305: [0mModule '"@tensorflow/tfjs"' has no exported member 'Tensor2D'.
+
+[7m2[0m import type { LayersModel, Tensor, Tensor2D, Logs } from '@tensorflow/tfjs';
+[7m [0m [91m                                   ~~~~~~~~[0m
+
+[96msrc/models/predictor.ts[0m:[93m2[0m:[93m46[0m - [91merror[0m[90m TS2305: [0mModule '"@tensorflow/tfjs"' has no exported member 'Logs'.
+
+[7m2[0m import type { LayersModel, Tensor, Tensor2D, Logs } from '@tensorflow/tfjs';
+[7m [0m [91m                                             ~~~~[0m
+
+[96msrc/models/predictor.ts[0m:[93m24[0m:[93m22[0m - [91merror[0m[90m TS2339: [0mProperty 'sequential' does not exist on type 'typeof import("@tensorflow/tfjs")'.
+
+[7m24[0m     const model = tf.sequential();
+[7m  [0m [91m                     ~~~~~~~~~~[0m
+
+[96msrc/models/predictor.ts[0m:[93m27[0m:[93m18[0m - [91merror[0m[90m TS2339: [0mProperty 'layers' does not exist on type 'typeof import("@tensorflow/tfjs")'.
+
+[7m27[0m     model.add(tf.layers.dense({
+[7m  [0m [91m                 ~~~~~~[0m
+
+[96msrc/models/predictor.ts[0m:[93m34[0m:[93m18[0m - [91merror[0m[90m TS2339: [0mProperty 'layers' does not exist on type 'typeof import("@tensorflow/tfjs")'.
+
+[7m34[0m     model.add(tf.layers.dense({ units: 32, activation: 'relu' }));
+[7m  [0m [91m                 ~~~~~~[0m
+
+[96msrc/models/predictor.ts[0m:[93m35[0m:[93m18[0m - [91merror[0m[90m TS2339: [0mProperty 'layers' does not exist on type 'typeof import("@tensorflow/tfjs")'.
+
+[7m35[0m     model.add(tf.layers.dropout({ rate: 0.2 }));
+[7m  [0m [91m                 ~~~~~~[0m
+
+[96msrc/models/predictor.ts[0m:[93m36[0m:[93m18[0m - [91merror[0m[90m TS2339: [0mProperty 'layers' does not exist on type 'typeof import("@tensorflow/tfjs")'.
+
+[7m36[0m     model.add(tf.layers.dense({ units: 16, activation: 'relu' }));
+[7m  [0m [91m                 ~~~~~~[0m
+
+[96msrc/models/predictor.ts[0m:[93m39[0m:[93m18[0m - [91merror[0m[90m TS2339: [0mProperty 'layers' does not exist on type 'typeof import("@tensorflow/tfjs")'.
+
+[7m39[0m     model.add(tf.layers.dense({
+[7m  [0m [91m                 ~~~~~~[0m
+
+[96msrc/models/predictor.ts[0m:[93m45[0m:[93m21[0m - [91merror[0m[90m TS2339: [0mProperty 'train' does not exist on type 'typeof import("@tensorflow/tfjs")'.
+
+[7m45[0m       optimizer: tf.train.adam(0.001),
+[7m  [0m [91m                    ~~~~~[0m
+
+[96msrc/models/predictor.ts[0m:[93m56[0m:[93m34[0m - [91merror[0m[90m TS2339: [0mProperty 'loadLayersModel' does not exist on type 'typeof import("@tensorflow/tfjs")'.
+
+[7m56[0m       const modelInfo = await tf.loadLayersModel('indexeddb://eremois-schedule-model');
+[7m  [0m [91m                                 ~~~~~~~~~~~~~~~[0m
+
+[96msrc/models/predictor.ts[0m:[93m99[0m:[93m14[0m - [91merror[0m[90m TS2339: [0mProperty 'tensor2d' does not exist on type 'typeof import("@tensorflow/tfjs")'.
+
+[7m99[0m       xs: tf.tensor2d([features]),
+[7m  [0m [91m             ~~~~~~~~[0m
+
+[96msrc/models/predictor.ts[0m:[93m100[0m:[93m14[0m - [91merror[0m[90m TS2339: [0mProperty 'tensor2d' does not exist on type 'typeof import("@tensorflow/tfjs")'.
+
+[7m100[0m       ys: tf.tensor2d([[0.25, 0.25, 0.25, 0.25]]), // Equal probabilities for each block type
+[7m   [0m [91m             ~~~~~~~~[0m
+
+[96msrc/models/predictor.ts[0m:[93m145[0m:[93m15[0m - [91merror[0m[90m TS2339: [0mProperty 'tensor2d' does not exist on type 'typeof import("@tensorflow/tfjs")'.
+
+[7m145[0m     return tf.tensor2d([features]);
+[7m   [0m [91m              ~~~~~~~~[0m
+
+
+Found 15 errors in the same file, starting at: src/models/predictor.ts[90m:2[0m
+
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m Lifecycle script `typecheck` failed with error:
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m [94mcode[39m [33m2[39m
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m [94mpath[39m /Users/ethandeng/HumanByte/Projects/eremois/packages/ai
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m [94mworkspace[39m @eremois/ai@0.1.0
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m [94mlocation[39m /Users/ethandeng/HumanByte/Projects/eremois/packages/ai
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m command failed
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m [94mcommand[39m sh -c tsc --noEmit
+[1G[0K⠙[1G[0K

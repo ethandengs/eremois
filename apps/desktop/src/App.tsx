@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { TimeCircle } from './components/TimeCircle/TimeCircle';
 import { TaskList } from './components/Tasks/TaskList';
