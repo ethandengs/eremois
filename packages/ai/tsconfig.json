@@ -1,15 +1,20 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "outDir": "./dist",
-    "rootDir": "./src",
+    "rootDir": "src",
+    "outDir": "dist",
+    "composite": true,
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
-    "composite": true,
-    "types": ["node", "jest", "@tensorflow/tfjs"]
+    "jsx": "react-jsx",
+    "types": ["node", "jest", "@tensorflow/tfjs"],
+    "paths": {
+      "@eremois/core": ["../core/src"]
+    }
   },
   "include": ["src/**/*"],
+  "exclude": ["**/*.test.ts", "**/*.spec.ts", "dist", "node_modules"],
   "references": [
     { "path": "../core" }
   ]

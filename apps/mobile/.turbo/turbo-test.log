@@ -1,0 +1,16 @@
+
+> mobile@1.0.0 test
+> jest --watchAll
+
+[1G[0K[2J[3J[H[1m[2mDetermining test suites to run...[22m[22m[999D[K
+
+[1mTest Suites: [22m0 of 1 total
+[1mTests:       [22m0 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        0 s[K[1A[K[1A[K[1A[K[1A[K[1A
+[0m[7m[33m[1m RUNS [22m[39m[27m[0m [2mcomponents/__tests__/[22m[1mThemedText-test.tsx[22m
+
+[1mTest Suites: [22m0 of 1 total
+[1mTests:       [22m0 total
+[1mSnapshots:   [22m0 total
+[1mTime:[22m        0 s

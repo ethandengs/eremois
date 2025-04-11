@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Glacial Indifference Font Declarations */
+@font-face {
+  font-family: 'Glacial Indifference';
+  src: url('/fonts/GlacialIndifference-Regular.woff2') format('woff2'),
+       url('/fonts/GlacialIndifference-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Glacial Indifference';
+  src: url('/fonts/GlacialIndifference-Bold.woff2') format('woff2'),
+       url('/fonts/GlacialIndifference-Bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Glacial Indifference';
+  src: url('/fonts/GlacialIndifference-Italic.woff2') format('woff2'),
+       url('/fonts/GlacialIndifference-Italic.otf') format('opentype');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Base styles */
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+  
+  html {
+    font-family: 'Glacial Indifference', system-ui, sans-serif;
+  }
+
+  body {
+    @apply bg-[#111111] text-white;
+  }
+
+  h1, h2, h3 {
+    @apply font-bold tracking-tight;
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    @apply font-normal;
+    letter-spacing: -0.01em;
+    line-height: 1.6;
+  }
+} 

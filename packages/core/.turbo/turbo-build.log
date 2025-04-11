@@ -1,10 +1,15 @@
 
 > @eremois/core@0.1.0 build
-> tsup
+> tsup src/index.ts --format cjs,esm --dts
 
-[31mNo input files, try "tsup <your-file>" instead[39m
-[37;40mnpm[0m [0m[31;40mERR![0m [0m[35mLifecycle script `build` failed with error:[0m 
-[0m[37;40mnpm[0m [0m[31;40mERR![0m [0m[35mError: command failed[0m 
-[0m[37;40mnpm[0m [0m[31;40mERR![0m [0m[35m  in workspace: @eremois/core@0.1.0[0m 
-[0m[37;40mnpm[0m [0m[31;40mERR![0m [0m[35m  at location: /Users/ethandeng/HumanByte/Projects/eremois/packages/core[0m 
-[0m
+[1G[0K[34mCLI[39m Building entry: src/index.ts
+[34mCLI[39m Using tsconfig: tsconfig.json
+[34mCLI[39m tsup v8.4.0
+[34mCLI[39m Target: es2020
+[34mCJS[39m Build start
+[34mESM[39m Build start
+[32mESM[39m [1mdist/index.mjs [22m[32m28.04 KB[39m
+[32mESM[39m ⚡️ Build success in 316ms
+[32mCJS[39m [1mdist/index.js [22m[32m29.81 KB[39m
+[32mCJS[39m ⚡️ Build success in 316ms
+DTS Build start

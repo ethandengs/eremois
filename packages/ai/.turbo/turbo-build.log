@@ -1,0 +1,25 @@
+
+> @eremois/ai@0.1.0 build
+> tsc
+
+[1G[0K[96mtsconfig.json[0m:[93m14[0m:[93m5[0m - [91merror[0m[90m TS6306: [0mReferenced project '/Users/ethandeng/HumanByte/Projects/eremois/packages/core' must have setting "composite": true.
+
+[7m14[0m     { "path": "../core" }
+[7m  [0m [91m    ~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96mtsconfig.json[0m:[93m14[0m:[93m5[0m - [91merror[0m[90m TS6310: [0mReferenced project '/Users/ethandeng/HumanByte/Projects/eremois/packages/core' may not disable emit.
+
+[7m14[0m     { "path": "../core" }
+[7m  [0m [91m    ~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+Found 2 errors in the same file, starting at: tsconfig.json[90m:14[0m
+
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m Lifecycle script `build` failed with error:
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m [94mcode[39m [33m2[39m
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m [94mpath[39m /Users/ethandeng/HumanByte/Projects/eremois/packages/ai
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m [94mworkspace[39m @eremois/ai@0.1.0
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m [94mlocation[39m /Users/ethandeng/HumanByte/Projects/eremois/packages/ai
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m command failed
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m [94mcommand[39m sh -c tsc
+[1G[0K⠙[1G[0K
