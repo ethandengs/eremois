@@ -1,5 +1,11 @@
-import type { SyncPeer } from './SyncManager';
 import type { EncryptedData } from '../storage/encrypted/EncryptionManager';
+
+export interface SyncPeer {
+  id: string;
+  lastSyncTime: number;
+  lastSeen: number;
+  isConnected: boolean;
+}
 
 export interface P2PMessage {
   type: 'SYNC_REQUEST' | 'SYNC_RESPONSE' | 'PEER_DISCOVERY' | 'PEER_ANNOUNCEMENT';
@@ -169,10 +175,11 @@ export class P2PNetworkManager {
     return Array.from(this.peers.values());
   }
 
-  async updatePeerLastSeen(peerId: string): Promise<void> {
+  private updatePeerLastSeen(peerId: string): void {
     const peer = this.peers.get(peerId);
     if (peer) {
-      peer.lastSeen = new Date();
+      peer.lastSeen = Date.now();
+      this.peers.set(peerId, peer);
     }
   }
 } 

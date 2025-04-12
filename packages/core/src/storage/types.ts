@@ -1,12 +1,16 @@
 import type { Task } from '../tasks/types';
 import type { TimeBlock, UserPattern } from '../types';
 import type { SyncOperation } from '../sync/SyncManager';
+import type { BaseModel } from '../ai/models/types';
+import type { ModelType } from '../ai/types';
 
 export interface StorageData {
   tasks: Task[];
   timeBlocks: TimeBlock[];
   userPattern: UserPattern | null;
   pendingOperations: SyncOperation[];
+  ai_models: Record<ModelType, BaseModel>;
+  patternHistory: Record<string, UserPattern>;
 }
 
 export interface StorageAdapter {

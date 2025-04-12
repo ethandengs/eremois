@@ -5,30 +5,29 @@ import { TaskSchema } from './types';
 import type { StorageAdapter } from '../storage/types';
 
 export class TaskManager {
-  private tasks: Map<string, Task>;
-  private storage: StorageAdapter | null;
+  private tasks: Map<string, Task> = new Map();
   private readonly STORAGE_KEY = 'tasks';
 
-  constructor(storage?: StorageAdapter) {
-    this.tasks = new Map();
-    this.storage = storage || null;
-    if (this.storage) {
-      this.loadFromStorage().catch(console.error);
-    }
+  constructor(private storage: StorageAdapter) {
+    this.loadFromStorage().catch(console.error);
   }
 
   private async loadFromStorage(): Promise<void> {
-    if (!this.storage) return;
-
-    const storedTasks = await this.storage.get<Task[]>(this.STORAGE_KEY) || [];
-    this.tasks = new Map(storedTasks.map(task => [task.id, task]));
+    try {
+      const storedTasks = await this.storage.get('tasks') ?? [];
+      this.tasks = new Map(storedTasks.map(task => [task.id, task]));
+    } catch (error) {
+      console.error('Failed to load tasks:', error);
+    }
   }
 
   private async saveToStorage(): Promise<void> {
-    if (!this.storage) return;
-
-    const tasks = Array.from(this.tasks.values());
-    await this.storage.set(this.STORAGE_KEY, tasks);
+    try {
+      const tasks = Array.from(this.tasks.values());
+      await this.storage.set('tasks', tasks);
+    } catch (error) {
+      console.error('Failed to save tasks:', error);
+    }
   }
 
   async createTask(

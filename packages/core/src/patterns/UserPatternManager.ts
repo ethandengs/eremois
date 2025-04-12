@@ -23,52 +23,56 @@ export interface PatternAnalysis {
 }
 
 export class UserPatternManager {
-  private pattern: UserPattern | null = null;
-  private storage: StorageAdapter;
+  private currentPattern: UserPattern | null = null;
+  private patternHistory: Record<string, UserPattern> = {};
   private readonly STORAGE_KEY = 'userPattern';
   private readonly HISTORY_KEY = 'patternHistory';
   private readonly DEFAULT_ANALYSIS_DAYS = 30;
 
-  constructor(storage: StorageAdapter) {
-    this.storage = storage;
-    this.loadPattern().catch(console.error);
+  constructor(private storage: StorageAdapter) {
+    this.loadFromStorage().catch(console.error);
   }
 
-  private async loadPattern(): Promise<void> {
-    this.pattern = await this.storage.get<UserPattern>(this.STORAGE_KEY) || null;
+  private async loadFromStorage(): Promise<void> {
+    try {
+      this.currentPattern = await this.storage.get('userPattern');
+      const history = await this.storage.get('patternHistory') ?? {};
+      this.patternHistory = history;
+    } catch (error) {
+      console.error('Failed to load user patterns:', error);
+    }
   }
 
-  private async savePattern(pattern: UserPattern): Promise<void> {
-    await this.storage.set(this.STORAGE_KEY, pattern);
-    
-    // Save to history for trend analysis
-    const timestamp = new Date().toISOString();
-    const history = await this.storage.get<Record<string, UserPattern>>(this.HISTORY_KEY) || {};
-    history[timestamp] = pattern;
-    await this.storage.set(this.HISTORY_KEY, history);
+  private async saveToStorage(): Promise<void> {
+    try {
+      await this.storage.set('userPattern', this.currentPattern);
+      await this.storage.set('patternHistory', this.patternHistory);
+    } catch (error) {
+      console.error('Failed to save user patterns:', error);
+    }
   }
 
   async getPattern(): Promise<UserPattern | null> {
-    return this.pattern;
+    return this.currentPattern;
   }
 
   async updatePattern(updates: Partial<UserPattern>): Promise<UserPattern> {
-    if (!this.pattern) {
+    if (!this.currentPattern) {
       throw new Error('No pattern exists. Create a new pattern first.');
     }
 
-    const updatedPattern = produce(this.pattern, (draft: UserPattern) => {
+    const updatedPattern = produce(this.currentPattern, (draft: UserPattern) => {
       Object.assign(draft, updates);
     });
 
-    await this.savePattern(updatedPattern);
-    this.pattern = updatedPattern;
+    await this.saveToStorage();
+    this.currentPattern = updatedPattern;
     return updatedPattern;
   }
 
   async createPattern(pattern: UserPattern): Promise<UserPattern> {
-    await this.savePattern(pattern);
-    this.pattern = pattern;
+    await this.saveToStorage();
+    this.currentPattern = pattern;
     return pattern;
   }
 
@@ -210,24 +214,23 @@ export class UserPatternManager {
   }
 
   private calculateBreakAdherence(focusBlocks: TimeBlock[], breakBlocks: TimeBlock[]): number {
-    if (!this.pattern || focusBlocks.length === 0) return 0;
+    if (!this.currentPattern || focusBlocks.length === 0) return 0;
 
     const expectedBreaks = Math.floor(
       focusBlocks.reduce(
         (total, block) => 
           total + (block.endTime.getTime() - block.startTime.getTime()) / (1000 * 60),
         0
-      ) / this.pattern.preferredFocusDuration
+      ) / this.currentPattern.preferredFocusDuration
     );
 
     return Math.min(breakBlocks.length / expectedBreaks, 1);
   }
 
   async getPatternHistory(days: number = this.DEFAULT_ANALYSIS_DAYS): Promise<UserPattern[]> {
-    const history = await this.storage.get<Record<string, UserPattern>>(this.HISTORY_KEY) || {};
     const cutoffDate = new Date(Date.now() - days * 24 * 60 * 60 * 1000);
 
-    return Object.entries(history)
+    return Object.entries(this.patternHistory)
       .filter(([timestamp]) => new Date(timestamp) >= cutoffDate)
       .map(([, pattern]) => pattern);
   }

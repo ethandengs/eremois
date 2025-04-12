@@ -6,32 +6,32 @@ import type { Task } from '../tasks/types';
 import type { TaskManager } from '../tasks/TaskManager';
 
 export class TimelineManager {
-  private blocks: Map<string, TimeBlock>;
-  private storage: StorageAdapter | null;
-  private taskManager: TaskManager | null;
+  private blocks: Map<string, TimeBlock> = new Map();
   private readonly STORAGE_KEY = 'timeBlocks';
 
-  constructor(storage?: StorageAdapter, taskManager?: TaskManager) {
-    this.blocks = new Map();
-    this.storage = storage || null;
-    this.taskManager = taskManager || null;
-    if (this.storage) {
-      this.loadFromStorage().catch(console.error);
-    }
+  constructor(
+    private readonly storage: StorageAdapter,
+    private readonly taskManager?: TaskManager
+  ) {
+    this.loadFromStorage().catch(console.error);
   }
 
   private async loadFromStorage(): Promise<void> {
-    if (!this.storage) return;
-
-    const storedBlocks = await this.storage.get<TimeBlock[]>(this.STORAGE_KEY) || [];
-    this.blocks = new Map(storedBlocks.map(block => [block.id, block]));
+    try {
+      const storedBlocks = await this.storage.get('timeBlocks') ?? [];
+      this.blocks = new Map(storedBlocks.map(block => [block.id, block]));
+    } catch (error) {
+      console.error('Failed to load time blocks:', error);
+    }
   }
 
   private async saveToStorage(): Promise<void> {
-    if (!this.storage) return;
-
-    const blocks = Array.from(this.blocks.values());
-    await this.storage.set(this.STORAGE_KEY, blocks);
+    try {
+      const blocks = Array.from(this.blocks.values());
+      await this.storage.set('timeBlocks', blocks);
+    } catch (error) {
+      console.error('Failed to save time blocks:', error);
+    }
   }
 
   async createBlock(
