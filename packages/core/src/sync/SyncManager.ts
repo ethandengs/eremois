@@ -1,146 +1,172 @@
-import type { TimeBlock } from '../types';
+import type { TimeBlock, UserPattern } from '../types';
 import type { Task } from '../tasks/types';
-import type { UserPattern } from '../types';
-import type { EncryptionManager, EncryptedData } from '../storage/encrypted/EncryptionManager';
 import type { StorageAdapter, StorageData } from '../storage/types';
 
-export interface SyncPeer {
+// Define base interface for entities that can be synced
+interface BaseSyncEntity {
   id: string;
-  name: string;
-  lastSeen: Date;
+  updatedAt: Date | number;
+  createdAt: Date | number;
 }
 
-export interface SyncMetadata {
-  timestamp: number;
-  deviceId: string;
-  version: number;
+// Type guard functions
+function isTask(entity: BaseSyncEntity): entity is TaskSync {
+  return 'title' in entity && 'priority' in entity && 'status' in entity;
 }
 
-export interface SyncableData {
-  tasks: Task[];
-  timeBlocks: TimeBlock[];
-  userPattern: UserPattern | null;
+function isTimeBlock(entity: BaseSyncEntity): entity is TimeBlockSync {
+  return 'startTime' in entity && 'endTime' in entity && 'type' in entity;
 }
+
+function isUserPattern(entity: BaseSyncEntity): entity is UserPatternSync {
+  return 'preferences' in entity;
+}
+
+// Convert Date to number for storage
+function convertDatesToNumbers<T extends BaseSyncEntity>(entity: T): T {
+  const converted = { ...entity };
+  if (converted.updatedAt instanceof Date) {
+    converted.updatedAt = converted.updatedAt.getTime();
+  }
+  if (converted.createdAt instanceof Date) {
+    converted.createdAt = converted.createdAt.getTime();
+  }
+  return converted;
+}
+
+// Define specific sync entity types
+type TaskSync = Task & BaseSyncEntity;
+type TimeBlockSync = TimeBlock & BaseSyncEntity;
+type UserPatternSync = UserPattern & BaseSyncEntity;
+
+export type SyncEntity = TaskSync | TimeBlockSync | UserPatternSync;
+export type StorageKey = keyof Pick<StorageData, 'tasks' | 'timeBlocks' | 'userPattern'>;
 
 export interface SyncOperation {
   type: 'create' | 'update' | 'delete';
-  entityType: 'task' | 'timeBlock' | 'userPattern';
+  entityType: StorageKey;
   entityId: string;
-  data?: any;
-  metadata: SyncMetadata;
+  data?: SyncEntity;
+  timestamp: number;
 }
 
-export interface ConflictResolution {
-  operation: SyncOperation;
-  resolution: 'local' | 'remote' | 'merge';
-  mergedData?: any;
+export interface SyncPeer {
+  id: string;
+  lastSyncTime: number;
+  isConnected: boolean;
 }
-
-type SyncEntity = Task | TimeBlock | UserPattern;
-type StorageKey = keyof StorageData;
 
 export class SyncManager {
-  private deviceId: string;
-  private version: number = 1;
-  private peers: Map<string, SyncPeer> = new Map();
   private pendingOperations: SyncOperation[] = [];
-  private readonly storage: StorageAdapter;
-  private readonly encryptionManager: EncryptionManager;
 
-  constructor(
-    storage: StorageAdapter,
-    encryptionManager: EncryptionManager,
-    deviceId: string
-  ) {
-    this.storage = storage;
-    this.encryptionManager = encryptionManager;
-    this.deviceId = deviceId;
-  }
+  constructor(private readonly storage: StorageAdapter) {}
 
-  async addPeer(peer: SyncPeer): Promise<void> {
-    this.peers.set(peer.id, {
-      ...peer,
-      lastSeen: new Date(),
-    });
-  }
+  async mergeData(serverData: Partial<StorageData>): Promise<void> {
+    const localTasks = (await this.storage.get('tasks')) ?? [];
+    const localTimeBlocks = (await this.storage.get('timeBlocks')) ?? [];
+    const localUserPattern = await this.storage.get('userPattern');
 
-  async removePeer(peerId: string): Promise<void> {
-    this.peers.delete(peerId);
-  }
+    if (Array.isArray(serverData.tasks)) {
+      const convertedTasks = serverData.tasks.map(task => convertDatesToNumbers(task as TaskSync));
+      const mergedTasks = this.mergeEntities(localTasks as TaskSync[], convertedTasks);
+      await this.storage.set('tasks', mergedTasks);
+    }
 
-  async prepareDataForSync(): Promise<EncryptedData> {
-    const data: SyncableData = {
-      tasks: await this.storage.get('tasks') || [],
-      timeBlocks: await this.storage.get('timeBlocks') || [],
-      userPattern: await this.storage.get('userPattern'),
-    };
+    if (Array.isArray(serverData.timeBlocks)) {
+      const convertedTimeBlocks = serverData.timeBlocks.map(block => convertDatesToNumbers(block as TimeBlockSync));
+      const mergedTimeBlocks = this.mergeEntities(localTimeBlocks as TimeBlockSync[], convertedTimeBlocks);
+      await this.storage.set('timeBlocks', mergedTimeBlocks);
+    }
 
-    return this.encryptionManager.encrypt(data);
-  }
-
-  async processSyncData(encryptedData: EncryptedData): Promise<void> {
-    const data = await this.encryptionManager.decrypt(encryptedData) as SyncableData;
-    await this.mergeData(data);
-  }
-
-  private async mergeData(remoteData: SyncableData): Promise<void> {
-    // Merge tasks
-    const localTasks = await this.storage.get('tasks');
-    const mergedTasks = this.mergeEntities<Task>(localTasks, remoteData.tasks);
-    await this.storage.set('tasks', mergedTasks);
-
-    // Merge time blocks
-    const localBlocks = await this.storage.get('timeBlocks');
-    const mergedBlocks = this.mergeEntities<TimeBlock>(localBlocks, remoteData.timeBlocks);
-    await this.storage.set('timeBlocks', mergedBlocks);
-
-    // Merge user pattern (take most recent)
-    const localPattern = await this.storage.get('userPattern');
-    if (remoteData.userPattern && (!localPattern || 
-        new Date(remoteData.userPattern.updatedAt) > new Date(localPattern.updatedAt))) {
-      await this.storage.set('userPattern', remoteData.userPattern);
+    if (serverData.userPattern) {
+      const convertedPattern = convertDatesToNumbers(serverData.userPattern as UserPatternSync);
+      if (!localUserPattern || convertedPattern.updatedAt > (localUserPattern as UserPatternSync).updatedAt) {
+        await this.storage.set('userPattern', convertedPattern);
+      }
     }
   }
 
-  private mergeEntities<T extends SyncEntity>(local: T[], remote: T[]): T[] {
-    const merged = new Map<string, T>();
+  private mergeEntities<T extends BaseSyncEntity>(local: T[], server: T[]): T[] {
+    const merged = [...local];
     
-    // Index local entities
-    for (const entity of local) {
-      merged.set(entity.id, entity);
-    }
-
-    // Merge remote entities
-    for (const remoteEntity of remote) {
-      const localEntity = merged.get(remoteEntity.id);
+    for (const serverEntity of server) {
+      const localIndex = merged.findIndex(e => e.id === serverEntity.id);
       
-      if (!localEntity) {
-        merged.set(remoteEntity.id, remoteEntity);
+      if (localIndex === -1) {
+        merged.push(serverEntity);
       } else {
-        const remoteDate = new Date(remoteEntity.updatedAt);
-        const localDate = new Date(localEntity.updatedAt);
+        const localEntity = merged[localIndex];
+        const serverTime = typeof serverEntity.updatedAt === 'number' ? serverEntity.updatedAt : serverEntity.updatedAt.getTime();
+        const localTime = typeof localEntity.updatedAt === 'number' ? localEntity.updatedAt : localEntity.updatedAt.getTime();
         
-        if (remoteDate > localDate) {
-          merged.set(remoteEntity.id, remoteEntity);
+        if (serverTime > localTime) {
+          merged[localIndex] = serverEntity;
         }
       }
     }
 
-    return Array.from(merged.values());
+    return merged;
   }
 
-  async recordOperation(operation: Omit<SyncOperation, 'metadata'>): Promise<void> {
-    const syncOperation: SyncOperation = {
-      ...operation,
-      metadata: {
-        timestamp: Date.now(),
-        deviceId: this.deviceId,
-        version: this.version,
-      },
-    };
-
-    this.pendingOperations.push(syncOperation);
+  async applyOperation(operation: SyncOperation): Promise<void> {
+    this.pendingOperations.push(operation);
     await this.storage.set('pendingOperations', this.pendingOperations);
+
+    switch (operation.type) {
+      case 'create':
+      case 'update': {
+        if (!operation.data) break;
+        
+        const currentData = await this.storage.get(operation.entityType) ?? 
+          (operation.entityType === 'userPattern' ? null : []);
+        
+        if (operation.entityType === 'userPattern') {
+          if (isUserPattern(operation.data)) {
+            await this.storage.set('userPattern', operation.data);
+          }
+        } else if (operation.entityType === 'tasks') {
+          const entities = currentData as TaskSync[];
+          if (isTask(operation.data)) {
+            const index = entities.findIndex(e => e.id === operation.entityId);
+            if (index === -1) {
+              entities.push(operation.data);
+            } else {
+              entities[index] = operation.data;
+            }
+            await this.storage.set('tasks', entities);
+          }
+        } else if (operation.entityType === 'timeBlocks') {
+          const entities = currentData as TimeBlockSync[];
+          if (isTimeBlock(operation.data)) {
+            const index = entities.findIndex(e => e.id === operation.entityId);
+            if (index === -1) {
+              entities.push(operation.data);
+            } else {
+              entities[index] = operation.data;
+            }
+            await this.storage.set('timeBlocks', entities);
+          }
+        }
+        break;
+      }
+      
+      case 'delete': {
+        const currentData = await this.storage.get(operation.entityType);
+        
+        if (operation.entityType === 'userPattern') {
+          await this.storage.set('userPattern', null);
+        } else if (operation.entityType === 'tasks') {
+          const entities = currentData as TaskSync[];
+          const filtered = entities.filter(e => e.id !== operation.entityId);
+          await this.storage.set('tasks', filtered);
+        } else if (operation.entityType === 'timeBlocks') {
+          const entities = currentData as TimeBlockSync[];
+          const filtered = entities.filter(e => e.id !== operation.entityId);
+          await this.storage.set('timeBlocks', filtered);
+        }
+        break;
+      }
+    }
   }
 
   async getPendingOperations(): Promise<SyncOperation[]> {
@@ -151,64 +177,4 @@ export class SyncManager {
     this.pendingOperations = [];
     await this.storage.set('pendingOperations', []);
   }
-
-  async resolveConflict(conflict: ConflictResolution): Promise<void> {
-    switch (conflict.resolution) {
-      case 'local':
-        // Keep local version, no action needed
-        break;
-      case 'remote':
-        // Apply remote operation
-        await this.applyOperation(conflict.operation);
-        break;
-      case 'merge':
-        if (conflict.mergedData) {
-          await this.applyOperation({
-            ...conflict.operation,
-            data: conflict.mergedData,
-          });
-        }
-        break;
-    }
-  }
-
-  private async applyOperation(operation: SyncOperation): Promise<void> {
-    const { entityType, type, entityId, data } = operation;
-    const storageKey = `${entityType}s` as StorageKey;
-    let entities = await this.storage.get(storageKey);
-
-    if (Array.isArray(entities)) {
-      switch (type) {
-        case 'create':
-        case 'update': {
-          const index = entities.findIndex(e => e.id === entityId);
-          
-          if (index === -1) {
-            entities.push(data);
-          } else {
-            entities[index] = data;
-          }
-          
-          await this.storage.set(storageKey, entities);
-          break;
-        }
-        case 'delete': {
-          entities = entities.filter(e => e.id !== entityId);
-          await this.storage.set(storageKey, entities);
-          break;
-        }
-      }
-    }
-  }
-
-  getConnectedPeers(): SyncPeer[] {
-    return Array.from(this.peers.values());
-  }
-
-  async updatePeerLastSeen(peerId: string): Promise<void> {
-    const peer = this.peers.get(peerId);
-    if (peer) {
-      peer.lastSeen = new Date();
-    }
-  }
-} 
+}

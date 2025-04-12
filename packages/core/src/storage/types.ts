@@ -1,11 +1,12 @@
 import type { Task } from '../tasks/types';
 import type { TimeBlock, UserPattern } from '../types';
+import type { SyncOperation } from '../sync/SyncManager';
 
 export interface StorageData {
   tasks: Task[];
   timeBlocks: TimeBlock[];
   userPattern: UserPattern | null;
-  pendingOperations: any[];
+  pendingOperations: SyncOperation[];
 }
 
 export interface StorageAdapter {
@@ -14,14 +15,14 @@ export interface StorageAdapter {
    * @param key Unique identifier for the data
    * @param data Data to store
    */
-  set<T>(key: string, data: T): Promise<void>;
+  set<K extends keyof StorageData>(key: K, data: StorageData[K]): Promise<void>;
 
   /**
    * Retrieve data for the given key
    * @param key Unique identifier for the data
    * @returns The stored data, or undefined if not found
    */
-  get<T>(key: string): Promise<T | undefined>;
+  get<K extends keyof StorageData>(key: K): Promise<StorageData[K]>;
 
   /**
    * Delete data for the given key

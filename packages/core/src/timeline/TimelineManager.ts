@@ -70,6 +70,7 @@ export class TimelineManager {
       title,
       description,
       color,
+      updatedAt: new Date(),
     };
 
     this.blocks.set(block.id, block);
@@ -83,7 +84,7 @@ export class TimelineManager {
 
   async updateBlock(
     id: string,
-    updates: Partial<Omit<TimeBlock, 'id'>>,
+    updates: Partial<Omit<TimeBlock, 'id' | 'updatedAt'>>,
   ): Promise<TimeBlock> {
     const block = this.blocks.get(id);
     if (!block) {
@@ -107,6 +108,7 @@ export class TimelineManager {
 
     const updatedBlock = produce(block, (draft: TimeBlock) => {
       Object.assign(draft, updates);
+      draft.updatedAt = new Date();
     });
 
     this.blocks.set(id, updatedBlock);
