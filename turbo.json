@@ -3,32 +3,36 @@
   "globalDependencies": [
     "**/.env.*local"
   ],
-  "tasks": {
+  "pipeline": {
     "build": {
       "dependsOn": [
         "^build"
       ],
       "outputs": [
-        "dist/**",
-        ".next/**"
+        ".next/**",
+        "!.next/cache/**",
+        "dist/**"
+      ],
+      "env": [
+        "NEXT_PUBLIC_SUPABASE_URL",
+        "NEXT_PUBLIC_SUPABASE_ANON_KEY",
+        "SUPABASE_SERVICE_ROLE_KEY",
+        "NEXT_PUBLIC_*"
       ]
     },
     "dev": {
       "cache": false,
       "persistent": true
     },
+    "lint": {
+      "outputs": []
+    },
     "test": {
       "dependsOn": [
         "build"
-      ]
-    },
-    "lint": {
+      ],
       "outputs": [],
-      "cache": true
-    },
-    "typecheck": {
-      "outputs": [],
-      "cache": true
+      "inputs": ["src/**/*.tsx", "src/**/*.ts", "test/**/*.ts", "test/**/*.tsx"]
     }
   }
 }

@@ -1,1 +1,1 @@
-self.__NEXT_FONT_MANIFEST="{\"pages\":{},\"app\":{\"/Users/ethandeng/HumanByte/Projects/eremois/apps/web/src/app/layout\":[\"static/media/9552bb1b4be5a905-s.p.otf\",\"static/media/372897d6cff0ea19-s.p.otf\"]},\"appUsingSizeAdjust\":true,\"pagesUsingSizeAdjust\":false}"
+self.__NEXT_FONT_MANIFEST='{"pages":{},"app":{"/Users/ethandeng/HumanByte/Projects/eremois/apps/web/src/app/layout":["static/media/9552bb1b4be5a905-s.p.otf","static/media/372897d6cff0ea19-s.p.otf"]},"appUsingSizeAdjust":true,"pagesUsingSizeAdjust":false}';
