@@ -119,25 +119,81 @@ eremois/
 
 ## Getting Started
 
-### Personal Use
-```bash
-# Desktop Installation
-npm install -g @eremois/desktop
+### Prerequisites
 
-# Mobile Installation
-npm install -g @eremois/mobile
+- Node.js 18+
+- npm or yarn
+- A Supabase account (free tier works great!)
+
+### Environment Setup
+
+1. Create a new project on [Supabase](https://supabase.com)
+2. Copy `.env.example` to `.env.local`:
+   ```bash
+   cp apps/web/.env.example apps/web/.env.local
+   ```
+3. Get your Supabase credentials:
+   - Go to your Supabase project dashboard
+   - Navigate to Project Settings -> API
+   - Copy the `Project URL` and `anon` public key
+   - Update your `.env.local` with these values
+
+### Installation
+
+```bash
+cd apps/web
+npm install
+npm run dev
 ```
 
-### Self-Hosted Setup
-```bash
-docker run -d \
-  --name eremois \
-  -p 3000:3000 \
-  -v eremois-data:/app/data \
-  eremois/server
+Your app should now be running on [http://localhost:3000](http://localhost:3000)
+
+### Database Schema
+
+The project uses Supabase as the backend with the following schema:
+
+```sql
+-- Users table (handled by Supabase Auth)
+-- Additional user metadata can be stored in public.users table
+create table public.users (
+  id uuid references auth.users not null primary key,
+  email text,
+  created_at timestamp with time zone default timezone('utc'::text, now()) not null,
+  updated_at timestamp with time zone default timezone('utc'::text, now()) not null
+);
+
+-- Enable Row Level Security
+alter table public.users enable row level security;
+
+-- Create policies
+create policy "Users can view their own data" on public.users
+  for select using (auth.uid() = id);
+
+create policy "Users can update their own data" on public.users
+  for update using (auth.uid() = id);
 ```
 
-For detailed setup instructions, visit our [Getting Started Guide](docs/guide/getting-started.md).
+### Authentication
+
+The project uses Supabase Authentication with:
+- Email/Password authentication
+- Protected routes using middleware
+- Persistent sessions
+
+To customize authentication methods or add social providers:
+1. Go to your Supabase project dashboard
+2. Navigate to Authentication -> Providers
+3. Enable and configure desired providers
+
+### Contributing
+
+1. Fork the repository
+2. Create your feature branch
+3. Set up your environment variables following the steps above
+4. Make your changes
+5. Submit a pull request
+
+For detailed contribution guidelines, see [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## Development
 

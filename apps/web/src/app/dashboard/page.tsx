@@ -1,55 +1,42 @@
-'use client';
+'use client'
 
-import { useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { useAuth } from '../contexts/AuthContext';
+import { motion } from 'framer-motion'
+import { useAuth } from '@/contexts/AuthContext'
 
 export default function DashboardPage() {
-  const { user, loading, logout } = useAuth();
-  const router = useRouter();
-
-  useEffect(() => {
-    if (!loading && !user) {
-      router.push('/login');
-    }
-  }, [loading, user, router]);
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-2xl">Loading...</div>
-      </div>
-    );
-  }
+  const { user } = useAuth()
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <nav className="bg-white shadow">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex items-center">
-              <h1 className="text-xl font-semibold">Dashboard</h1>
-            </div>
-            <div className="flex items-center">
-              <span className="mr-4">Welcome, {user?.email}</span>
-              <button
-                onClick={logout}
-                className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500"
-              >
-                Logout
-              </button>
+    <div className="min-h-screen bg-[#111111] text-white py-24">
+      <div className="container mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <h1 className="text-4xl font-bold mb-6">Welcome, {user?.email}</h1>
+          <div className="bg-gray-900/50 backdrop-blur-lg rounded-xl p-6 border border-gray-800">
+            <h2 className="text-2xl font-bold mb-4">Getting Started</h2>
+            <p className="text-gray-300 mb-4">
+              Welcome to erēmois! You're now ready to start managing your time with privacy and intelligence.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+              <div className="bg-gray-800/50 rounded-lg p-6">
+                <h3 className="text-xl font-bold mb-2">Create Your First Task</h3>
+                <p className="text-gray-400">Start by creating your first task and organizing your time.</p>
+              </div>
+              <div className="bg-gray-800/50 rounded-lg p-6">
+                <h3 className="text-xl font-bold mb-2">Explore Timeline</h3>
+                <p className="text-gray-400">View your tasks in our intuitive timeline interface.</p>
+              </div>
+              <div className="bg-gray-800/50 rounded-lg p-6">
+                <h3 className="text-xl font-bold mb-2">Set Up AI Features</h3>
+                <p className="text-gray-400">Configure AI to help optimize your time management.</p>
+              </div>
             </div>
           </div>
-        </div>
-      </nav>
-
-      <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-        <div className="px-4 py-6 sm:px-0">
-          <div className="border-4 border-dashed border-gray-200 rounded-lg h-96 flex items-center justify-center">
-            <p className="text-gray-500 text-xl">Welcome to your dashboard!</p>
-          </div>
-        </div>
-      </main>
+        </motion.div>
+      </div>
     </div>
-  );
+  )
 } 

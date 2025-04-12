@@ -1,33 +1,79 @@
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
+import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs'
+import { NextResponse } from 'next/server'
+import type { NextRequest } from 'next/server'
+import type { Database } from '@/lib/database.types'
 
-// List of paths that require authentication
-const protectedPaths = ['/dashboard'];
+export async function middleware(req: NextRequest) {
+  const res = NextResponse.next()
+  const supabase = createMiddlewareClient<Database>({ req, res })
 
-// List of paths that should redirect to dashboard if user is authenticated
-const authPaths = ['/login', '/signup'];
+  // Refresh session if expired - required for Server Components
+  const { data: { session }, error } = await supabase.auth.getSession()
 
-export function middleware(request: NextRequest) {
-  const token = request.cookies.get('token');
-  const { pathname } = request.nextUrl;
+  // Public routes that don't require authentication
+  const publicRoutes = [
+    '/',
+    '/features',
+    '/features/living-timeline',
+    '/features/task-management',
+    '/features/edge-ai',
+    '/about',
+    '/about/privacy',
+    '/about/technology',
+    '/use-cases/personal',
+    '/use-cases/teams',
+    '/use-cases/enterprise',
+    '/signin',
+    '/signup'
+  ]
 
-  // Check if the path requires authentication
-  if (protectedPaths.some(path => pathname.startsWith(path))) {
-    if (!token) {
-      const response = NextResponse.redirect(new URL('/login', request.url));
-      return response;
-    }
+  // Auth routes that should redirect to dashboard if user is already logged in
+  const authRoutes = ['/signin', '/signup']
+
+  // Check if the current path is a public route
+  const isPublicRoute = publicRoutes.some(route => req.nextUrl.pathname === route)
+  const isAuthRoute = authRoutes.some(route => req.nextUrl.pathname === route)
+
+  // If there was an error getting the session, redirect to signin
+  if (error) {
+    console.error('Middleware session error:', error)
+    const redirectUrl = req.nextUrl.clone()
+    redirectUrl.pathname = '/signin'
+    return NextResponse.redirect(redirectUrl)
   }
 
-  // Redirect authenticated users away from auth pages
-  if (authPaths.includes(pathname) && token) {
-    const response = NextResponse.redirect(new URL('/dashboard', request.url));
-    return response;
+  // Redirect to dashboard if user is logged in and trying to access auth routes
+  if (session && isAuthRoute) {
+    const redirectUrl = req.nextUrl.clone()
+    redirectUrl.pathname = '/dashboard'
+    return NextResponse.redirect(redirectUrl)
   }
 
-  return NextResponse.next();
+  // Allow access to public routes without authentication
+  if (isPublicRoute) {
+    return res
+  }
+
+  // Redirect to sign in if accessing protected route without session
+  if (!session) {
+    const redirectUrl = req.nextUrl.clone()
+    redirectUrl.pathname = '/signin'
+    return NextResponse.redirect(redirectUrl)
+  }
+
+  return res
 }
 
 export const config = {
-  matcher: [...protectedPaths, ...authPaths],
-}; 
+  matcher: [
+    /*
+     * Match all request paths except:
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     * - public folder
+     * - public marketing pages (now handled in the middleware function)
+     */
+    '/((?!_next/static|_next/image|favicon.ico|public|images|fonts).*)',
+  ],
+} 
