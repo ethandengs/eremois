@@ -1,7 +1,10 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "cd apps/web && npm install && npm run build",
-  "installCommand": "cd apps/web && npm install",
+  "buildCommand": "npm install && turbo build --filter=@eremois/web...",
+  "installCommand": "npm install",
   "framework": "nextjs",
-  "outputDirectory": "apps/web/.next"
+  "outputDirectory": "apps/web/.next",
+  "monorepo": true,
+  "root": ".",
+  "sourceDirectory": "apps/web"
 } 
