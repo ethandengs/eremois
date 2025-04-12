@@ -4,7 +4,5 @@
   "installCommand": "npm install",
   "framework": "nextjs",
   "outputDirectory": "apps/web/.next",
-  "monorepo": true,
-  "root": ".",
-  "sourceDirectory": "apps/web"
+  "root": "apps/web"
 } 
