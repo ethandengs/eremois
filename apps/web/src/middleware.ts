@@ -57,7 +57,8 @@ export async function middleware(req: NextRequest) {
     '/use-cases/teams',
     '/use-cases/enterprise',
     '/signin',
-    '/signup'
+    '/signup',
+    '/sitemap.xml'
   ]
 
   // Auth routes that should redirect to dashboard if user is already logged in
@@ -106,7 +107,8 @@ export const config = {
      * - favicon.ico (favicon file)
      * - public folder
      * - public marketing pages (now handled in the middleware function)
+     * - sitemap.xml
      */
-    '/((?!_next/static|_next/image|favicon.ico|public|images|fonts).*)',
+    '/((?!_next/static|_next/image|favicon.ico|public|images|fonts|sitemap.xml).*)',
   ],
 } 
