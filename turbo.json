@@ -3,7 +3,7 @@
   "globalDependencies": [
     "**/.env.*local"
   ],
-  "tasks": {
+  "pipeline": {
     "build": {
       "dependsOn": [
         "^build"
@@ -17,7 +17,8 @@
         "NEXT_PUBLIC_SUPABASE_URL",
         "NEXT_PUBLIC_SUPABASE_ANON_KEY",
         "SUPABASE_SERVICE_ROLE_KEY",
-        "NEXT_PUBLIC_*"
+        "NEXT_PUBLIC_*",
+        "NODE_ENV"
       ]
     },
     "dev": {

@@ -7,7 +7,7 @@
   "types": "./dist/index.d.ts",
   "sideEffects": false,
   "scripts": {
-    "build": "tsc --build",
+    "build": "rimraf dist && tsc --build",
     "clean": "rimraf dist",
     "dev": "tsc --watch",
     "lint": "eslint src/**/*.ts",
