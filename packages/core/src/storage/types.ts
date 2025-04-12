@@ -1,3 +1,13 @@
+import type { Task } from '../tasks/types';
+import type { TimeBlock, UserPattern } from '../types';
+
+export interface StorageData {
+  tasks: Task[];
+  timeBlocks: TimeBlock[];
+  userPattern: UserPattern | null;
+  pendingOperations: any[];
+}
+
 export interface StorageAdapter {
   /**
    * Store data with the given key

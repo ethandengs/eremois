@@ -8,9 +8,11 @@ export interface TimeBlock {
   title?: string;
   description?: string;
   color?: string;
+  updatedAt: Date;
 }
 
 export interface UserPattern {
+  id: string;
   preferredFocusDuration: number;
   preferredBreakDuration: number;
   productivePeriods: {
@@ -22,6 +24,7 @@ export interface UserPattern {
     preferredDays: number[];
     preferredHours: number[];
   };
+  updatedAt: Date;
 }
 
 export interface PredictionInput {

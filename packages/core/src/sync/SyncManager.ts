@@ -2,7 +2,7 @@ import type { TimeBlock } from '../types';
 import type { Task } from '../tasks/types';
 import type { UserPattern } from '../types';
 import type { EncryptionManager, EncryptedData } from '../storage/encrypted/EncryptionManager';
-import type { StorageAdapter } from '../storage/types';
+import type { StorageAdapter, StorageData } from '../storage/types';
 
 export interface SyncPeer {
   id: string;
@@ -35,6 +35,9 @@ export interface ConflictResolution {
   resolution: 'local' | 'remote' | 'merge';
   mergedData?: any;
 }
+
+type SyncEntity = Task | TimeBlock | UserPattern;
+type StorageKey = keyof StorageData;
 
 export class SyncManager {
   private deviceId: string;
@@ -82,27 +85,24 @@ export class SyncManager {
 
   private async mergeData(remoteData: SyncableData): Promise<void> {
     // Merge tasks
-    const localTasks: Task[] = await this.storage.get('tasks') || [];
-    const mergedTasks = this.mergeEntities(localTasks, remoteData.tasks);
+    const localTasks = await this.storage.get('tasks');
+    const mergedTasks = this.mergeEntities<Task>(localTasks, remoteData.tasks);
     await this.storage.set('tasks', mergedTasks);
 
     // Merge time blocks
-    const localBlocks: TimeBlock[] = await this.storage.get('timeBlocks') || [];
-    const mergedBlocks = this.mergeEntities(localBlocks, remoteData.timeBlocks);
+    const localBlocks = await this.storage.get('timeBlocks');
+    const mergedBlocks = this.mergeEntities<TimeBlock>(localBlocks, remoteData.timeBlocks);
     await this.storage.set('timeBlocks', mergedBlocks);
 
     // Merge user pattern (take most recent)
-    const localPattern: UserPattern | null = await this.storage.get('userPattern');
+    const localPattern = await this.storage.get('userPattern');
     if (remoteData.userPattern && (!localPattern || 
         new Date(remoteData.userPattern.updatedAt) > new Date(localPattern.updatedAt))) {
       await this.storage.set('userPattern', remoteData.userPattern);
     }
   }
 
-  private mergeEntities<T extends { id: string; updatedAt: Date | string }>(
-    local: T[],
-    remote: T[]
-  ): T[] {
+  private mergeEntities<T extends SyncEntity>(local: T[], remote: T[]): T[] {
     const merged = new Map<string, T>();
     
     // Index local entities
@@ -174,28 +174,29 @@ export class SyncManager {
 
   private async applyOperation(operation: SyncOperation): Promise<void> {
     const { entityType, type, entityId, data } = operation;
-    const storageKey = `${entityType}s`;
+    const storageKey = `${entityType}s` as StorageKey;
+    let entities = await this.storage.get(storageKey);
 
-    switch (type) {
-      case 'create':
-      case 'update': {
-        const entities = await this.storage.get(storageKey) || [];
-        const index = entities.findIndex((e: any) => e.id === entityId);
-        
-        if (index === -1) {
-          entities.push(data);
-        } else {
-          entities[index] = data;
+    if (Array.isArray(entities)) {
+      switch (type) {
+        case 'create':
+        case 'update': {
+          const index = entities.findIndex(e => e.id === entityId);
+          
+          if (index === -1) {
+            entities.push(data);
+          } else {
+            entities[index] = data;
+          }
+          
+          await this.storage.set(storageKey, entities);
+          break;
         }
-        
-        await this.storage.set(storageKey, entities);
-        break;
-      }
-      case 'delete': {
-        const entities = await this.storage.get(storageKey) || [];
-        const filtered = entities.filter((e: any) => e.id !== entityId);
-        await this.storage.set(storageKey, filtered);
-        break;
+        case 'delete': {
+          entities = entities.filter(e => e.id !== entityId);
+          await this.storage.set(storageKey, entities);
+          break;
+        }
       }
     }
   }
