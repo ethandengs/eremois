@@ -11,20 +11,8 @@ module.exports = {
         glacial: ['var(--font-glacial)'],
       },
       colors: {
-        primary: {
-          DEFAULT: '#1a1a1a',
-          50: '#f7f7f7',
-          100: '#e3e3e3',
-          200: '#c8c8c8',
-          300: '#a4a4a4',
-          400: '#818181',
-          500: '#666666',
-          600: '#515151',
-          700: '#434343',
-          800: '#383838',
-          900: '#1a1a1a',
-        },
-        secondary: '#3B82F6',
+        primary: '#4F46E5',
+        secondary: '#10B981',
         accent: {
           DEFAULT: '#4ADE80',
           50: '#f0fdf4',
