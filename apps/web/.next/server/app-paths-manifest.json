@@ -1,10 +1,10 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
-  "/(auth)/signup/page": "app/(auth)/signup/page.js",
-  "/(auth)/signin/page": "app/(auth)/signin/page.js",
-  "/features/page": "app/features/page.js",
   "/sitemap.xml/route": "app/sitemap.xml/route.js",
-  "/features/living-timeline/page": "app/features/living-timeline/page.js",
+  "/(auth)/signin/page": "app/(auth)/signin/page.js",
+  "/page": "app/page.js",
+  "/(auth)/signup/page": "app/(auth)/signup/page.js",
   "/dashboard/page": "app/dashboard/page.js",
-  "/page": "app/page.js"
+  "/features/living-timeline/page": "app/features/living-timeline/page.js",
+  "/features/page": "app/features/page.js"
 }
