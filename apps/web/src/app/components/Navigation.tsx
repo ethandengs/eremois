@@ -4,14 +4,15 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
+import { useAuth } from '@/contexts/AuthContext'
 
 const GitHubIcon = () => (
-  <svg viewBox="0 0 24 24" className="w-6 h-6 fill-current">
+  <svg viewBox="0 0 24 24" className="w-6 h-6 fill-current" aria-label="GitHub">
     <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
   </svg>
 )
 
-const menuItems = [
+const publicMenuItems = [
   {
     title: 'Features',
     items: [
@@ -44,6 +45,21 @@ export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
   const pathname = usePathname()
   const router = useRouter()
+  const { user, signOut } = useAuth()
+
+  const handleLogout = async () => {
+    try {
+      await signOut()
+      setIsOpen(false)
+      router.push('/')
+    } catch (error) {
+      console.error('Error logging out:', error)
+    }
+  }
+
+  const handleLogoClick = () => {
+    setIsOpen(false)
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -61,33 +77,41 @@ export default function Navigation() {
         }`}
       >
         <div className="container mx-auto px-6 py-6 flex items-center justify-between">
-          <Link href="/" className="text-2xl font-bold">
+          <Link 
+            href={user ? "/dashboard" : "/"} 
+            className="text-2xl font-bold"
+            onClick={handleLogoClick}
+          >
             eremois
           </Link>
           
           <div className="flex items-center space-x-4">
-            <Link
-              href="https://github.com/ethandengs/eremois"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-white hover:text-gray-300 transition-colors"
-              title="View on GitHub"
-            >
-              <GitHubIcon />
-            </Link>
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-block"
-            >
-              <button
-                type="button"
-                className="bg-[#FF4B4B] px-6 py-2 rounded-xl font-medium hover:bg-[#FF6B6B] transition-colors"
-                onClick={() => router.push('/signin')}
-              >
-                Get Started
-              </button>
-            </motion.div>
+            {!user && (
+              <>
+                <Link
+                  href="https://github.com/ethandengs/eremois"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white hover:text-gray-300 transition-colors"
+                  title="View on GitHub"
+                >
+                  <GitHubIcon />
+                </Link>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="inline-block"
+                >
+                  <button
+                    type="button"
+                    className="bg-[#FF4B4B] px-6 py-2 rounded-xl font-medium hover:bg-[#FF6B6B] transition-colors"
+                    onClick={() => router.push('/signin')}
+                  >
+                    Get Started
+                  </button>
+                </motion.div>
+              </>
+            )}
             <button
               type="button"
               onClick={() => setIsOpen(!isOpen)}
@@ -127,28 +151,40 @@ export default function Navigation() {
           className="fixed inset-0 z-40 bg-[#111111]/95 pt-24 overflow-auto"
         >
           <div className="container mx-auto px-6 py-12">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-              {menuItems.map((section) => (
-                <div key={section.title}>
-                  <h3 className="text-lg font-medium text-gray-400 mb-6">{section.title}</h3>
-                  <ul className="space-y-4">
-                    {section.items.map((item) => (
-                      <li key={item.href}>
-                        <Link
-                          href={item.href}
-                          className={`text-2xl font-bold hover:text-[#FF6B6B] transition-colors ${
-                            pathname === item.href ? 'text-[#FF6B6B]' : 'text-white'
-                          }`}
-                          onClick={() => setIsOpen(false)}
-                        >
-                          {item.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
+            {user ? (
+              <div className="flex flex-col items-end">
+                <button
+                  type="button"
+                  className="text-gray-300 hover:text-white transition-colors text-lg"
+                  onClick={handleLogout}
+                >
+                  Log out
+                </button>
+              </div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+                {publicMenuItems.map((section) => (
+                  <div key={section.title}>
+                    <h3 className="text-lg font-medium text-gray-400 mb-6">{section.title}</h3>
+                    <ul className="space-y-4">
+                      {section.items.map((item) => (
+                        <li key={item.href}>
+                          <Link
+                            href={item.href}
+                            className={`text-2xl font-bold hover:text-[#FF6B6B] transition-colors ${
+                              pathname === item.href ? 'text-[#FF6B6B]' : 'text-white'
+                            }`}
+                            onClick={() => setIsOpen(false)}
+                          >
+                            {item.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </motion.div>
       )}
